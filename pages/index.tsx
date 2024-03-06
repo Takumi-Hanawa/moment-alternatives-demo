@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 // import utc from "dayjs/plugin/utc";
 // import timezone from "dayjs/plugin/timezone";
 import { DateTime } from "luxon";
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
 import { DateTimeFormatter, LocalDateTime } from "js-joda";
 
 const Home: NextPage = () => {
@@ -14,7 +14,8 @@ const Home: NextPage = () => {
   // dayjs.extend(timezone);
 
   const jodaNow = LocalDateTime.now();
-  const jodaFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+  const jodaISO = LocalDateTime.parse("2022-04-01T00:00:00");
+  const jodaFormatter = DateTimeFormatter.ofPattern("yyyy年M月d日 HH:mm:ss");
 
   return (
     <div className={styles.container}>
@@ -24,10 +25,14 @@ const Home: NextPage = () => {
         <table>
           <tbody>
             <tr>
-              <td>format</td>
+              <td>format : date.now</td>
+              <td>format : ISO string</td>
             </tr>
             <tr>
-              <td>{dayjs(dateNow).format("YYYY-MM-DD HH:mm:ss")}</td>
+              <td>{dayjs(dateNow).format("YYYY年M月D日 HH:mm:ss")}</td>
+              <td>
+                {dayjs("2022-04-01T00:00:00").format("YYYY年M月D日 HH:mm:ss")}
+              </td>
             </tr>
           </tbody>
         </table>
@@ -37,10 +42,16 @@ const Home: NextPage = () => {
         <table>
           <tbody>
             <tr>
-              <td>format</td>
+              <td>format : date.now</td>
+              <td>format : ISO string</td>
             </tr>
             <tr>
-              <td>{DateTime.now().toFormat("yyyy-MM-dd HH:mm:ss")}</td>
+              <td>{DateTime.now().toFormat("yyyy年M月d日 HH:mm:ss")}</td>
+              <td>
+                {DateTime.fromISO("2022-04-01T00:00:00").toFormat(
+                  "yyyy年M月d日 HH:mm:ss"
+                )}
+              </td>
             </tr>
           </tbody>
         </table>
@@ -50,10 +61,17 @@ const Home: NextPage = () => {
         <table>
           <tbody>
             <tr>
-              <td>format</td>
+              <td>format : date.now</td>
+              <td>format : ISO string</td>
             </tr>
             <tr>
-              <td>{format(dateNow, "yyyy-MM-dd HH:mm:ss")}</td>
+              <td>{format(dateNow, "yyyy年M月d日 HH:mm:ss")}</td>
+              <td>
+                {format(
+                  parseISO("2022-04-01T00:00:00"),
+                  "yyyy年M月d日 HH:mm:ss"
+                )}
+              </td>
             </tr>
           </tbody>
         </table>
@@ -63,10 +81,12 @@ const Home: NextPage = () => {
         <table>
           <tbody>
             <tr>
-              <td>format</td>
+              <td>format : date.now</td>
+              <td>format : ISO string</td>
             </tr>
             <tr>
               <td>{jodaNow.format(jodaFormatter)}</td>
+              <td>{jodaISO.format(jodaFormatter)}</td>
             </tr>
           </tbody>
         </table>
