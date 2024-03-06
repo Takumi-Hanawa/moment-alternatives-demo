@@ -21,6 +21,40 @@ const Home: NextPage = () => {
   const jodaDateISO = LocalDate.parse("2022-04-01");
   const period = Period.between(jodaDateISO, jodaDateNow);
 
+  let dayjsDiff;
+  try {
+    dayjsDiff = dayjs(dateNow).diff("2022-04-01T00:00:00", "year", true);
+  } catch (e) {
+    console.log("dayjs : ", e);
+  }
+
+  let luxonDiff;
+  try {
+    luxonDiff = DateTime.now().diff(
+      DateTime.fromISO("2022-04-01T00:00:00"),
+      "year"
+    ).years;
+  } catch (e) {
+    console.log("luxon : ", e);
+  }
+
+  let dateFnsDiff;
+  try {
+    dateFnsDiff = differenceInCalendarYears(
+      dateNow,
+      parseISO("2022-04-01T00:00:00")
+    );
+  } catch (e) {
+    console.log("date-fns : ", e);
+  }
+
+  let jsJodaDiff;
+  try {
+    jsJodaDiff = period.years();
+  } catch (e) {
+    console.log("js-joda : ", e);
+  }
+
   return (
     <div className={styles.container}>
       <h1>Moment Alternatives Demo</h1>
@@ -38,10 +72,7 @@ const Home: NextPage = () => {
               <td>
                 {dayjs("2022-04-01T00:00:00").format("YYYY年M月D日 HH:mm:ss")}
               </td>
-              <td>
-                year :{" "}
-                {dayjs(dateNow).diff("2022-04-01T00:00:00", "year", true)}
-              </td>
+              <td>year : {dayjsDiff}</td>
             </tr>
           </tbody>
         </table>
@@ -62,15 +93,7 @@ const Home: NextPage = () => {
                   "yyyy年M月d日 HH:mm:ss"
                 )}
               </td>
-              <td>
-                year :{" "}
-                {
-                  DateTime.now().diff(
-                    DateTime.fromISO("2022-04-01T00:00:00"),
-                    "year"
-                  ).years
-                }
-              </td>
+              <td>year : {luxonDiff}</td>
             </tr>
           </tbody>
         </table>
@@ -92,13 +115,7 @@ const Home: NextPage = () => {
                   "yyyy年M月d日 HH:mm:ss"
                 )}
               </td>
-              <td>
-                year :{" "}
-                {differenceInCalendarYears(
-                  dateNow,
-                  parseISO("2022-04-01T00:00:00")
-                )}
-              </td>
+              <td>year : {dateFnsDiff}</td>
             </tr>
           </tbody>
         </table>
@@ -110,11 +127,12 @@ const Home: NextPage = () => {
             <tr>
               <td>format : date.now</td>
               <td>format : ISO string</td>
+              <td>diff</td>
             </tr>
             <tr>
               <td>{jodaNow.format(jodaFormatter)}</td>
               <td>{jodaISO.format(jodaFormatter)}</td>
-              <td>year : {period.years()}</td>
+              <td>year : {jsJodaDiff}</td>
             </tr>
           </tbody>
         </table>
