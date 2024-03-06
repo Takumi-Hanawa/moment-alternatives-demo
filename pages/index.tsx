@@ -9,6 +9,8 @@ import {
   addDays,
   differenceInCalendarYears,
   format,
+  isAfter,
+  isBefore,
   isValid,
   parseISO,
   subDays,
@@ -170,6 +172,78 @@ const Home: NextPage = () => {
     jsJodaValid = "error";
   }
 
+  let dayjsBefore;
+  try {
+    dayjsBefore = dayjs("2022-04-01T00:00:00").isBefore(dayjs(dateNow));
+  } catch (e) {
+    console.log("dayjs : ", e);
+    dayjsBefore = "error";
+  }
+
+  let dayjsAfter;
+  try {
+    dayjsAfter = dayjs("2099-04-01T00:00:00").isAfter(dayjs(dateNow));
+  } catch (e) {
+    console.log("dayjs : ", e);
+    dayjsAfter = "error";
+  }
+
+  let luxonBefore;
+  try {
+    luxonBefore =
+      DateTime.fromISO("2022-04-01T00:00:00") < DateTime.now() ? true : false;
+  } catch (e) {
+    console.log("luxon : ", e);
+    luxonBefore = "error";
+  }
+
+  let luxonAfter;
+  try {
+    luxonAfter =
+      DateTime.fromISO("2099-04-01T00:00:00") > DateTime.now() ? true : false;
+  } catch (e) {
+    console.log("luxon : ", e);
+    luxonAfter = "error";
+  }
+
+  let dateFnsBefore;
+  try {
+    dateFnsBefore = isBefore(parseISO("2022-04-01T00:00:00"), dateNow)
+      ? true
+      : false;
+  } catch (e) {
+    console.log("date-fns : ", e);
+    dateFnsBefore = "error";
+  }
+
+  let dateFnsAfter;
+  try {
+    dateFnsAfter = isAfter(parseISO("2099-04-01T00:00:00"), dateNow)
+      ? true
+      : false;
+  } catch (e) {
+    console.log("date-fns : ", e);
+    dateFnsAfter = "error";
+  }
+
+  let jsJodaBefore;
+  try {
+    const jodaBefore = LocalDateTime.parse("2022-04-01T00:00:00");
+    jsJodaBefore = jodaBefore.isBefore(LocalDateTime.now());
+  } catch (e) {
+    console.log("js-joda : ", e);
+    jsJodaBefore = "error";
+  }
+
+  let jsJodaAfter;
+  try {
+    const jodaAfter = LocalDateTime.parse("2099-04-01T00:00:00");
+    jsJodaAfter = jodaAfter.isAfter(LocalDateTime.now());
+  } catch (e) {
+    console.log("js-joda : ", e);
+    jsJodaAfter = "error";
+  }
+
   return (
     <div className={styles.container}>
       <h1>Moment Alternatives Demo</h1>
@@ -180,10 +254,12 @@ const Home: NextPage = () => {
             <tr>
               <td>format : date.now</td>
               <td>format : ISO string</td>
-              <td>diff : now - 2022-04-01</td>
-              <td>add 1day</td>
-              <td>sub 1day</td>
-              <td>valid 2022-02-29</td>
+              <td>diff : now → 2022-04-01</td>
+              <td>add : now + 1day</td>
+              <td>sub : now - 1day</td>
+              <td>valid : 2022-02-29</td>
+              <td>isBefore : now → 2022-04-01</td>
+              <td>isAfter : now → 2099-04-01</td>
             </tr>
             <tr>
               <td>{dayjs(dateNow).format("YYYY年M月D日 HH:mm:ss")}</td>
@@ -194,6 +270,8 @@ const Home: NextPage = () => {
               <td>{dayjsAdd}</td>
               <td>{dayjsSubtract}</td>
               <td>{dayjsValid.toString()}</td>
+              <td>{dayjsBefore.toString()}</td>
+              <td>{dayjsAfter.toString()}</td>
             </tr>
           </tbody>
         </table>
@@ -205,10 +283,12 @@ const Home: NextPage = () => {
             <tr>
               <td>format : date.now</td>
               <td>format : ISO string</td>
-              <td>diff : now - 2022-04-01</td>
-              <td>add 1day</td>
-              <td>sub 1day</td>
-              <td>valid 2022-02-29</td>
+              <td>diff : now → 2022-04-01</td>
+              <td>add : now + 1day</td>
+              <td>sub : now - 1day</td>
+              <td>valid : 2022-02-29</td>
+              <td>isBefore : now → 2022-04-01</td>
+              <td>isAfter : now → 2099-04-01</td>
             </tr>
             <tr>
               <td>{DateTime.now().toFormat("yyyy年M月d日 HH:mm:ss")}</td>
@@ -221,6 +301,8 @@ const Home: NextPage = () => {
               <td>{luxonAdd}</td>
               <td>{luxonSubtract}</td>
               <td>{luxonValid.toString()}</td>
+              <td>{luxonBefore.toString()}</td>
+              <td>{luxonAfter.toString()}</td>
             </tr>
           </tbody>
         </table>
@@ -232,10 +314,12 @@ const Home: NextPage = () => {
             <tr>
               <td>format : date.now</td>
               <td>format : ISO string</td>
-              <td>diff : now - 2022-04-01</td>
-              <td>add 1day</td>
-              <td>sub 1day</td>
-              <td>valid 2022-02-29</td>
+              <td>diff : now → 2022-04-01</td>
+              <td>add : now + 1day</td>
+              <td>sub : now - 1day</td>
+              <td>valid : 2022-02-29</td>
+              <td>isBefore : now → 2022-04-01</td>
+              <td>isAfter : now → 2099-04-01</td>
             </tr>
             <tr>
               <td>{format(dateNow, "yyyy年M月d日 HH:mm:ss")}</td>
@@ -249,6 +333,8 @@ const Home: NextPage = () => {
               <td>{dateFnsAdd}</td>
               <td>{dateFnsSubtract}</td>
               <td>{dateFnsValid.toString()}</td>
+              <td>{dateFnsBefore.toString()}</td>
+              <td>{dateFnsAfter.toString()}</td>
             </tr>
           </tbody>
         </table>
@@ -260,10 +346,12 @@ const Home: NextPage = () => {
             <tr>
               <td>format : date.now</td>
               <td>format : ISO string</td>
-              <td>diff : now - 2022-04-01</td>
-              <td>add 1day</td>
-              <td>sub 1day</td>
-              <td>valid 2022-02-29</td>
+              <td>diff : now → 2022-04-01</td>
+              <td>add : now + 1day</td>
+              <td>sub : now - 1day</td>
+              <td>valid : 2022-02-29</td>
+              <td>isBefore : now → 2022-04-01</td>
+              <td>isAfter : now → 2099-04-01</td>
             </tr>
             <tr>
               <td>{jodaNow.format(jodaFormatter)}</td>
@@ -271,7 +359,9 @@ const Home: NextPage = () => {
               <td>{jsJodaDiff} year</td>
               <td>{jsJodaAdd}</td>
               <td>{jsJodaSubtract}</td>
-              <td>{jsJodaValid}</td>
+              <td>{jsJodaValid.toString()}</td>
+              <td>{jsJodaBefore.toString()}</td>
+              <td>{jsJodaAfter.toString()}</td>
             </tr>
           </tbody>
         </table>
