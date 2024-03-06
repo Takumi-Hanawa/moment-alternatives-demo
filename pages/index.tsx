@@ -252,9 +252,9 @@ const Home: NextPage = () => {
         <table>
           <tbody>
             <tr>
-              <td>format : date.now</td>
-              <td>format : ISO string</td>
-              <td>diff : now → 2022-04-01</td>
+              <td>format : from date.now</td>
+              <td>format : from ISO string</td>
+              <td>diff : now ↔︎ 2022-04-01</td>
               <td>add : now + 1day</td>
               <td>sub : now - 1day</td>
               <td>valid : 2022-02-29</td>
@@ -281,9 +281,9 @@ const Home: NextPage = () => {
         <table>
           <tbody>
             <tr>
-              <td>format : date.now</td>
-              <td>format : ISO string</td>
-              <td>diff : now → 2022-04-01</td>
+              <td>format : from date.now</td>
+              <td>format : from ISO string</td>
+              <td>diff : now ↔︎ 2022-04-01</td>
               <td>add : now + 1day</td>
               <td>sub : now - 1day</td>
               <td>valid : 2022-02-29</td>
@@ -312,9 +312,9 @@ const Home: NextPage = () => {
         <table>
           <tbody>
             <tr>
-              <td>format : date.now</td>
-              <td>format : ISO string</td>
-              <td>diff : now → 2022-04-01</td>
+              <td>format : from date.now</td>
+              <td>format : from ISO string</td>
+              <td>diff : now ↔︎ 2022-04-01</td>
               <td>add : now + 1day</td>
               <td>sub : now - 1day</td>
               <td>valid : 2022-02-29</td>
@@ -344,9 +344,9 @@ const Home: NextPage = () => {
         <table>
           <tbody>
             <tr>
-              <td>format : date.now</td>
-              <td>format : ISO string</td>
-              <td>diff : now → 2022-04-01</td>
+              <td>format : from date.now</td>
+              <td>format : from ISO string</td>
+              <td>diff : now ↔︎ 2022-04-01</td>
               <td>add : now + 1day</td>
               <td>sub : now - 1day</td>
               <td>valid : 2022-02-29</td>
