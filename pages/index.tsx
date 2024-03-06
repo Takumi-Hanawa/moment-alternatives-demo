@@ -9,6 +9,7 @@ import {
   addDays,
   differenceInCalendarYears,
   format,
+  isValid,
   parseISO,
   subDays,
 } from "date-fns";
@@ -136,6 +137,39 @@ const Home: NextPage = () => {
     jsJodaSubtract = "error";
   }
 
+  let dayjsValid;
+  try {
+    dayjsValid = dayjs("2022-02-29").isValid();
+  } catch (e) {
+    console.log("dayjs : ", e);
+    dayjsValid = "error";
+  }
+
+  let luxonValid;
+  try {
+    luxonValid = DateTime.fromISO("2022-02-29").isValid;
+  } catch (e) {
+    console.log("luxon : ", e);
+    luxonValid = "error";
+  }
+
+  let dateFnsValid;
+  try {
+    dateFnsValid = isValid(parseISO("2022-02-29"));
+  } catch (e) {
+    console.log("date-fns : ", e);
+    dateFnsValid = "error";
+  }
+
+  let jsJodaValid;
+  try {
+    const localData = LocalDate.parse("2022-02-29");
+    jsJodaValid = localData ? "true" : "false";
+  } catch (e) {
+    console.log("js-joda : ", e);
+    jsJodaValid = "error";
+  }
+
   return (
     <div className={styles.container}>
       <h1>Moment Alternatives Demo</h1>
@@ -149,6 +183,7 @@ const Home: NextPage = () => {
               <td>diff : now - 2022-04-01</td>
               <td>add 1day</td>
               <td>sub 1day</td>
+              <td>valid 2022-02-29</td>
             </tr>
             <tr>
               <td>{dayjs(dateNow).format("YYYY年M月D日 HH:mm:ss")}</td>
@@ -158,6 +193,7 @@ const Home: NextPage = () => {
               <td>{dayjsDiff} year</td>
               <td>{dayjsAdd}</td>
               <td>{dayjsSubtract}</td>
+              <td>{dayjsValid.toString()}</td>
             </tr>
           </tbody>
         </table>
@@ -172,6 +208,7 @@ const Home: NextPage = () => {
               <td>diff : now - 2022-04-01</td>
               <td>add 1day</td>
               <td>sub 1day</td>
+              <td>valid 2022-02-29</td>
             </tr>
             <tr>
               <td>{DateTime.now().toFormat("yyyy年M月d日 HH:mm:ss")}</td>
@@ -183,6 +220,7 @@ const Home: NextPage = () => {
               <td>{luxonDiff} year</td>
               <td>{luxonAdd}</td>
               <td>{luxonSubtract}</td>
+              <td>{luxonValid.toString()}</td>
             </tr>
           </tbody>
         </table>
@@ -197,6 +235,7 @@ const Home: NextPage = () => {
               <td>diff : now - 2022-04-01</td>
               <td>add 1day</td>
               <td>sub 1day</td>
+              <td>valid 2022-02-29</td>
             </tr>
             <tr>
               <td>{format(dateNow, "yyyy年M月d日 HH:mm:ss")}</td>
@@ -209,6 +248,7 @@ const Home: NextPage = () => {
               <td>{dateFnsDiff} year</td>
               <td>{dateFnsAdd}</td>
               <td>{dateFnsSubtract}</td>
+              <td>{dateFnsValid.toString()}</td>
             </tr>
           </tbody>
         </table>
@@ -223,6 +263,7 @@ const Home: NextPage = () => {
               <td>diff : now - 2022-04-01</td>
               <td>add 1day</td>
               <td>sub 1day</td>
+              <td>valid 2022-02-29</td>
             </tr>
             <tr>
               <td>{jodaNow.format(jodaFormatter)}</td>
@@ -230,6 +271,7 @@ const Home: NextPage = () => {
               <td>{jsJodaDiff} year</td>
               <td>{jsJodaAdd}</td>
               <td>{jsJodaSubtract}</td>
+              <td>{jsJodaValid}</td>
             </tr>
           </tbody>
         </table>
