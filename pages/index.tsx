@@ -5,7 +5,13 @@ import dayjs from "dayjs";
 // import utc from "dayjs/plugin/utc";
 // import timezone from "dayjs/plugin/timezone";
 import { DateTime } from "luxon";
-import { differenceInCalendarYears, format, parseISO } from "date-fns";
+import {
+  addDays,
+  differenceInCalendarYears,
+  format,
+  parseISO,
+  subDays,
+} from "date-fns";
 import { DateTimeFormatter, LocalDate, LocalDateTime, Period } from "js-joda";
 
 const Home: NextPage = () => {
@@ -17,15 +23,12 @@ const Home: NextPage = () => {
   const jodaISO = LocalDateTime.parse("2022-04-01T00:00:00");
   const jodaFormatter = DateTimeFormatter.ofPattern("yyyy年M月d日 HH:mm:ss");
 
-  const jodaDateNow = LocalDate.now();
-  const jodaDateISO = LocalDate.parse("2022-04-01");
-  const period = Period.between(jodaDateISO, jodaDateNow);
-
   let dayjsDiff;
   try {
     dayjsDiff = dayjs(dateNow).diff("2022-04-01T00:00:00", "year", true);
   } catch (e) {
     console.log("dayjs : ", e);
+    dayjsDiff = "error";
   }
 
   let luxonDiff;
@@ -36,6 +39,7 @@ const Home: NextPage = () => {
     ).years;
   } catch (e) {
     console.log("luxon : ", e);
+    luxonDiff = "error";
   }
 
   let dateFnsDiff;
@@ -46,13 +50,90 @@ const Home: NextPage = () => {
     );
   } catch (e) {
     console.log("date-fns : ", e);
+    dateFnsDiff = "error";
   }
 
   let jsJodaDiff;
   try {
+    const jodaNow = LocalDate.now();
+    const jodaISO = LocalDate.parse("2022-04-01");
+    const period = Period.between(jodaISO, jodaNow);
     jsJodaDiff = period.years();
   } catch (e) {
     console.log("js-joda : ", e);
+    jsJodaDiff = "error";
+  }
+
+  let dayjsAdd;
+  try {
+    dayjsAdd = dayjs(dateNow).add(1, "day").format("YYYY年M月D日 HH:mm:ss");
+  } catch (e) {
+    console.log("dayjs : ", e);
+    dayjsAdd = "error";
+  }
+
+  let luxonAdd;
+  try {
+    luxonAdd = DateTime.now()
+      .plus({ days: 1 })
+      .toFormat("yyyy年M月d日 HH:mm:ss");
+  } catch (e) {
+    console.log("luxon : ", e);
+    luxonAdd = "error";
+  }
+
+  let dateFnsAdd;
+  try {
+    dateFnsAdd = format(addDays(dateNow, 1), "yyyy年M月d日 HH:mm:ss");
+  } catch (e) {
+    console.log("date-fns : ", e);
+    dateFnsAdd = "error";
+  }
+
+  let jsJodaAdd;
+  try {
+    const jodaAdd = jodaNow.plusDays(1);
+    jsJodaAdd = jodaAdd.format(jodaFormatter);
+  } catch (e) {
+    console.log("js-joda : ", e);
+    jsJodaAdd = "error";
+  }
+
+  let dayjsSubtract;
+  try {
+    dayjsSubtract = dayjs(dateNow)
+      .subtract(1, "day")
+      .format("YYYY年M月D日 HH:mm:ss");
+  } catch (e) {
+    console.log("dayjs : ", e);
+    dayjsSubtract = "error";
+  }
+
+  let luxonSubtract;
+  try {
+    luxonSubtract = DateTime.now()
+      .minus({ days: 1 })
+      .toFormat("yyyy年M月d日 HH:mm:ss");
+  } catch (e) {
+    console.log("luxon : ", e);
+    luxonSubtract = "error";
+  }
+
+  let dateFnsSubtract;
+  try {
+    dateFnsSubtract = format(subDays(dateNow, 1), "yyyy年M月d日 HH:mm:ss");
+  } catch (e) {
+    console.log("date-fns : ", e);
+    dateFnsSubtract = "error";
+  }
+
+  let jsJodaSubtract;
+  try {
+    const jodaSubtract = jodaNow.minusDays(1);
+    jsJodaSubtract = jodaSubtract.format(jodaFormatter);
+  } catch (e) {
+    console.log("js-joda : ", e);
+    jsJodaSubtract = "error";
   }
 
   return (
@@ -65,14 +146,18 @@ const Home: NextPage = () => {
             <tr>
               <td>format : date.now</td>
               <td>format : ISO string</td>
-              <td>diff</td>
+              <td>diff : now - 2022-04-01</td>
+              <td>add 1day</td>
+              <td>sub 1day</td>
             </tr>
             <tr>
               <td>{dayjs(dateNow).format("YYYY年M月D日 HH:mm:ss")}</td>
               <td>
                 {dayjs("2022-04-01T00:00:00").format("YYYY年M月D日 HH:mm:ss")}
               </td>
-              <td>year : {dayjsDiff}</td>
+              <td>{dayjsDiff} year</td>
+              <td>{dayjsAdd}</td>
+              <td>{dayjsSubtract}</td>
             </tr>
           </tbody>
         </table>
@@ -84,7 +169,9 @@ const Home: NextPage = () => {
             <tr>
               <td>format : date.now</td>
               <td>format : ISO string</td>
-              <td>diff</td>
+              <td>diff : now - 2022-04-01</td>
+              <td>add 1day</td>
+              <td>sub 1day</td>
             </tr>
             <tr>
               <td>{DateTime.now().toFormat("yyyy年M月d日 HH:mm:ss")}</td>
@@ -93,7 +180,9 @@ const Home: NextPage = () => {
                   "yyyy年M月d日 HH:mm:ss"
                 )}
               </td>
-              <td>year : {luxonDiff}</td>
+              <td>{luxonDiff} year</td>
+              <td>{luxonAdd}</td>
+              <td>{luxonSubtract}</td>
             </tr>
           </tbody>
         </table>
@@ -105,7 +194,9 @@ const Home: NextPage = () => {
             <tr>
               <td>format : date.now</td>
               <td>format : ISO string</td>
-              <td>diff</td>
+              <td>diff : now - 2022-04-01</td>
+              <td>add 1day</td>
+              <td>sub 1day</td>
             </tr>
             <tr>
               <td>{format(dateNow, "yyyy年M月d日 HH:mm:ss")}</td>
@@ -115,7 +206,9 @@ const Home: NextPage = () => {
                   "yyyy年M月d日 HH:mm:ss"
                 )}
               </td>
-              <td>year : {dateFnsDiff}</td>
+              <td>{dateFnsDiff} year</td>
+              <td>{dateFnsAdd}</td>
+              <td>{dateFnsSubtract}</td>
             </tr>
           </tbody>
         </table>
@@ -127,12 +220,16 @@ const Home: NextPage = () => {
             <tr>
               <td>format : date.now</td>
               <td>format : ISO string</td>
-              <td>diff</td>
+              <td>diff : now - 2022-04-01</td>
+              <td>add 1day</td>
+              <td>sub 1day</td>
             </tr>
             <tr>
               <td>{jodaNow.format(jodaFormatter)}</td>
               <td>{jodaISO.format(jodaFormatter)}</td>
-              <td>year : {jsJodaDiff}</td>
+              <td>{jsJodaDiff} year</td>
+              <td>{jsJodaAdd}</td>
+              <td>{jsJodaSubtract}</td>
             </tr>
           </tbody>
         </table>
