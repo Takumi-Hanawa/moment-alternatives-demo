@@ -15,7 +15,15 @@ import {
   parseISO,
   subDays,
 } from "date-fns";
-import { DateTimeFormatter, LocalDate, LocalDateTime, Period } from "js-joda";
+import {
+  DateTimeFormatter,
+  LocalDate,
+  LocalDateTime,
+  ZoneId,
+  Period,
+} from "@js-joda/core";
+import "@js-joda/timezone";
+
 import {
   addDay,
   iso8601,
@@ -29,10 +37,10 @@ const Home: NextPage = () => {
   // dayjs.extend(utc);
   // dayjs.extend(timezone);
 
-  const utcDateTime = new Date();
-
-  const jodaNow = LocalDateTime.now();
-  const jodaISO = LocalDateTime.parse("2022-04-01T00:00:00");
+  const jodaNow = LocalDateTime.now(ZoneId.of("Asia/Tokyo"));
+  const jodaISO = LocalDateTime.parse("2022-04-01T00:00:00").atZone(
+    ZoneId.of("Asia/Tokyo")
+  );
   const jodaFormatter = DateTimeFormatter.ofPattern("yyyy年M月d日 HH:mm:ss");
 
   const jstDateTime = utcToZonedTime(new Date(), "Asia/Tokyo");
