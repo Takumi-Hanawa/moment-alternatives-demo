@@ -26,7 +26,6 @@ import {
 import { utcToZonedTime } from "date-fns-tz";
 
 const Home: NextPage = () => {
-  var date = new Date();
   // dayjs.extend(utc);
   // dayjs.extend(timezone);
 
@@ -34,14 +33,14 @@ const Home: NextPage = () => {
   const jodaISO = LocalDateTime.parse("2022-04-01T00:00:00");
   const jodaFormatter = DateTimeFormatter.ofPattern("yyyy年M月d日 HH:mm:ss");
 
-  const jstDateTime = utcToZonedTime(date, "Asia/Tokyo");
+  const jstDateTime = utcToZonedTime(new Date(), "Asia/Tokyo");
 
   /**
    * Diff
    */
   let dayjsDiff;
   try {
-    dayjsDiff = dayjs(date).diff("2022-04-01T00:00:00", "year", true);
+    dayjsDiff = dayjs(jstDateTime).diff("2022-04-01T00:00:00", "year", true);
   } catch (e) {
     console.log("dayjs : ", e);
     dayjsDiff = "error";
@@ -85,7 +84,7 @@ const Home: NextPage = () => {
    */
   let dayjsAdd;
   try {
-    dayjsAdd = dayjs(date).add(1, "day").format("YYYY年M月D日 HH:mm:ss");
+    dayjsAdd = dayjs(jstDateTime).add(1, "day").format("YYYY年M月D日 HH:mm:ss");
   } catch (e) {
     console.log("dayjs : ", e);
     dayjsAdd = "error";
@@ -120,7 +119,7 @@ const Home: NextPage = () => {
 
   let tempoAdd;
   try {
-    tempoAdd = tempoFormat(addDay(date, 1), "YYYY年M月D日 HH:mm:ss");
+    tempoAdd = tempoFormat(addDay(jstDateTime, 1), "YYYY年M月D日 HH:mm:ss");
   } catch (e) {
     console.log("tempo : ", e);
     tempoAdd = "error";
@@ -131,7 +130,7 @@ const Home: NextPage = () => {
    */
   let dayjsSubtract;
   try {
-    dayjsSubtract = dayjs(date)
+    dayjsSubtract = dayjs(jstDateTime)
       .subtract(1, "day")
       .format("YYYY年M月D日 HH:mm:ss");
   } catch (e) {
@@ -168,7 +167,10 @@ const Home: NextPage = () => {
 
   let tempoSubtract;
   try {
-    tempoSubtract = tempoFormat(addDay(date, -1), "YYYY年M月D日 HH:mm:ss");
+    tempoSubtract = tempoFormat(
+      addDay(jstDateTime, -1),
+      "YYYY年M月D日 HH:mm:ss"
+    );
   } catch (e) {
     console.log("tempo : ", e);
     tempoSubtract = "error";
@@ -225,7 +227,7 @@ const Home: NextPage = () => {
    */
   let dayjsBefore;
   try {
-    dayjsBefore = dayjs("2022-04-01T00:00:00").isBefore(dayjs(date));
+    dayjsBefore = dayjs("2022-04-01T00:00:00").isBefore(dayjs(jstDateTime));
   } catch (e) {
     console.log("dayjs : ", e);
     dayjsBefore = "error";
@@ -233,7 +235,7 @@ const Home: NextPage = () => {
 
   let dayjsAfter;
   try {
-    dayjsAfter = dayjs("2099-04-01T00:00:00").isAfter(dayjs(date));
+    dayjsAfter = dayjs("2099-04-01T00:00:00").isAfter(dayjs(jstDateTime));
   } catch (e) {
     console.log("dayjs : ", e);
     dayjsAfter = "error";
@@ -297,7 +299,7 @@ const Home: NextPage = () => {
 
   let tempoBefore;
   try {
-    tempoBefore = tempoIsBefore("2022-04-01T00:00:00", date);
+    tempoBefore = tempoIsBefore("2022-04-01T00:00:00", jstDateTime);
   } catch (e) {
     console.log("tempo : ", e);
     tempoBefore = "error";
@@ -305,7 +307,7 @@ const Home: NextPage = () => {
 
   let tempoAfter;
   try {
-    tempoAfter = tempoIsAfter("2099-04-01T00:00:00", date);
+    tempoAfter = tempoIsAfter("2099-04-01T00:00:00", jstDateTime);
   } catch (e) {
     console.log("tempo : ", e);
     tempoAfter = "error";
@@ -448,7 +450,7 @@ const Home: NextPage = () => {
               <td>isAfter : now → 2099-04-01</td>
             </tr>
             <tr>
-              <td>{tempoFormat(date, "YYYY年M月D日 HH:mm:ss")}</td>
+              <td>{tempoFormat(jstDateTime, "YYYY年M月D日 HH:mm:ss")}</td>
               <td>
                 {tempoFormat("2022-04-01T00:00:00", "YYYY年M月D日 HH:mm:ss")}
               </td>
