@@ -29,6 +29,8 @@ const Home: NextPage = () => {
   // dayjs.extend(utc);
   // dayjs.extend(timezone);
 
+  const utcDateTime = new Date();
+
   const jodaNow = LocalDateTime.now();
   const jodaISO = LocalDateTime.parse("2022-04-01T00:00:00");
   const jodaFormatter = DateTimeFormatter.ofPattern("yyyy年M月d日 HH:mm:ss");
@@ -48,10 +50,9 @@ const Home: NextPage = () => {
 
   let luxonDiff;
   try {
-    luxonDiff = DateTime.now().diff(
-      DateTime.fromISO("2022-04-01T00:00:00"),
-      "year"
-    ).years;
+    luxonDiff = DateTime.now()
+      .setZone("Asia/Tokyo")
+      .diff(DateTime.fromISO("2022-04-01T00:00:00"), "year").years;
   } catch (e) {
     console.log("luxon : ", e);
     luxonDiff = "error";
@@ -93,6 +94,7 @@ const Home: NextPage = () => {
   let luxonAdd;
   try {
     luxonAdd = DateTime.now()
+      .setZone("Asia/Tokyo")
       .plus({ days: 1 })
       .toFormat("yyyy年M月d日 HH:mm:ss");
   } catch (e) {
@@ -141,6 +143,7 @@ const Home: NextPage = () => {
   let luxonSubtract;
   try {
     luxonSubtract = DateTime.now()
+      .setZone("Asia/Tokyo")
       .minus({ days: 1 })
       .toFormat("yyyy年M月d日 HH:mm:ss");
   } catch (e) {
@@ -189,7 +192,7 @@ const Home: NextPage = () => {
 
   let luxonValid;
   try {
-    luxonValid = DateTime.fromISO("2022-02-29").isValid;
+    luxonValid = DateTime.fromISO("2022-02-29").setZone("Asia/Tokyo").isValid;
   } catch (e) {
     console.log("luxon : ", e);
     luxonValid = "error";
@@ -244,7 +247,10 @@ const Home: NextPage = () => {
   let luxonBefore;
   try {
     luxonBefore =
-      DateTime.fromISO("2022-04-01T00:00:00") < DateTime.now() ? true : false;
+      DateTime.fromISO("2022-04-01T00:00:00").setZone("Asia/Tokyo") <
+      DateTime.now().setZone("Asia/Tokyo")
+        ? true
+        : false;
   } catch (e) {
     console.log("luxon : ", e);
     luxonBefore = "error";
@@ -253,7 +259,10 @@ const Home: NextPage = () => {
   let luxonAfter;
   try {
     luxonAfter =
-      DateTime.fromISO("2099-04-01T00:00:00") > DateTime.now() ? true : false;
+      DateTime.fromISO("2099-04-01T00:00:00").setZone("Asia/Tokyo") >
+      DateTime.now().setZone("Asia/Tokyo")
+        ? true
+        : false;
   } catch (e) {
     console.log("luxon : ", e);
     luxonAfter = "error";
@@ -360,11 +369,15 @@ const Home: NextPage = () => {
               <td>isAfter : now → 2099-04-01</td>
             </tr>
             <tr>
-              <td>{DateTime.now().toFormat("yyyy年M月d日 HH:mm:ss")}</td>
               <td>
-                {DateTime.fromISO("2022-04-01T00:00:00").toFormat(
-                  "yyyy年M月d日 HH:mm:ss"
-                )}
+                {DateTime.now()
+                  .setZone("Asia/Tokyo")
+                  .toFormat("yyyy年M月d日 HH:mm:ss")}
+              </td>
+              <td>
+                {DateTime.fromISO("2022-04-01T00:00:00")
+                  .setZone("Asia/Tokyo")
+                  .toFormat("yyyy年M月d日 HH:mm:ss")}
               </td>
               <td>{luxonDiff} year</td>
               <td>{luxonAdd}</td>
