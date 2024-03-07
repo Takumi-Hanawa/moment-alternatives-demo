@@ -37,7 +37,7 @@ const Home: NextPage = () => {
   // dayjs.extend(utc);
   // dayjs.extend(timezone);
 
-  const jodaNow = LocalDateTime.now(ZoneId.of("Asia/Tokyo"));
+  const jodaNow = LocalDateTime.now().atZone(ZoneId.of("Asia/Tokyo"));
   const jodaISO = LocalDateTime.parse("2022-04-01T00:00:00").atZone(
     ZoneId.of("Asia/Tokyo")
   );
@@ -60,7 +60,10 @@ const Home: NextPage = () => {
   try {
     luxonDiff = DateTime.now()
       .setZone("Asia/Tokyo")
-      .diff(DateTime.fromISO("2022-04-01T00:00:00"), "year").years;
+      .diff(
+        DateTime.fromISO("2022-04-01T00:00:00").setZone("Asia/Tokyo"),
+        "year"
+      ).years;
   } catch (e) {
     console.log("luxon : ", e);
     luxonDiff = "error";
@@ -217,7 +220,9 @@ const Home: NextPage = () => {
   // js-jodaにはvalidに相当する機能がないため、parseでエラーが出なければ有効とする
   let jsJodaValid;
   try {
-    const localData = LocalDate.parse("2022-02-29");
+    const localData = LocalDateTime.parse("2022-02-29T00:00:00").atZone(
+      ZoneId.of("Asia/Tokyo")
+    );
     jsJodaValid = localData ? "true" : "false";
   } catch (e) {
     console.log("js-joda : ", e);
@@ -298,8 +303,10 @@ const Home: NextPage = () => {
 
   let jsJodaBefore;
   try {
-    const jodaBefore = LocalDateTime.parse("2022-04-01T00:00:00");
-    jsJodaBefore = jodaBefore.isBefore(LocalDateTime.now());
+    const jodaBefore = LocalDateTime.parse("2022-04-01T00:00:00").atZone(
+      ZoneId.of("Asia/Tokyo")
+    );
+    jsJodaBefore = jodaBefore.isBefore(jodaNow);
   } catch (e) {
     console.log("js-joda : ", e);
     jsJodaBefore = "error";
@@ -307,8 +314,10 @@ const Home: NextPage = () => {
 
   let jsJodaAfter;
   try {
-    const jodaAfter = LocalDateTime.parse("2099-04-01T00:00:00");
-    jsJodaAfter = jodaAfter.isAfter(LocalDateTime.now());
+    const jodaAfter = LocalDateTime.parse("2099-04-01T00:00:00").atZone(
+      ZoneId.of("Asia/Tokyo")
+    );
+    jsJodaAfter = jodaAfter.isAfter(jodaNow);
   } catch (e) {
     console.log("js-joda : ", e);
     jsJodaAfter = "error";
