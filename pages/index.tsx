@@ -19,6 +19,7 @@ import {
   DateTimeFormatter,
   LocalDate,
   LocalDateTime,
+  ZonedDateTime,
   ZoneId,
   Period,
 } from "@js-joda/core";
@@ -37,8 +38,9 @@ const Home: NextPage = () => {
   // dayjs.extend(utc);
   // dayjs.extend(timezone);
 
-  const jodaNow = LocalDateTime.now().atZone(ZoneId.of("Asia/Tokyo"));
-  const jodaISO = LocalDateTime.parse("2022-04-01T00:00:00").atZone(
+  const jodaNow = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
+  const jodaISO = ZonedDateTime.of(
+    LocalDateTime.parse("2022-04-01T00:00:00"),
     ZoneId.of("Asia/Tokyo")
   );
   const jodaFormatter = DateTimeFormatter.ofPattern("yyyy年M月d日 HH:mm:ss");
@@ -82,7 +84,7 @@ const Home: NextPage = () => {
 
   let jsJodaDiff;
   try {
-    const jodaNow = LocalDate.now();
+    const jodaNow = LocalDate.now(ZoneId.of("Asia/Tokyo"));
     const jodaISO = LocalDate.parse("2022-04-01");
     const period = Period.between(jodaISO, jodaNow);
     jsJodaDiff = period.years();
@@ -303,7 +305,8 @@ const Home: NextPage = () => {
 
   let jsJodaBefore;
   try {
-    const jodaBefore = LocalDateTime.parse("2022-04-01T00:00:00").atZone(
+    const jodaBefore = ZonedDateTime.of(
+      LocalDateTime.parse("2022-04-01T00:00:00"),
       ZoneId.of("Asia/Tokyo")
     );
     jsJodaBefore = jodaBefore.isBefore(jodaNow);
@@ -314,7 +317,8 @@ const Home: NextPage = () => {
 
   let jsJodaAfter;
   try {
-    const jodaAfter = LocalDateTime.parse("2099-04-01T00:00:00").atZone(
+    const jodaAfter = ZonedDateTime.of(
+      LocalDateTime.parse("2099-04-01T00:00:00"),
       ZoneId.of("Asia/Tokyo")
     );
     jsJodaAfter = jodaAfter.isAfter(jodaNow);
