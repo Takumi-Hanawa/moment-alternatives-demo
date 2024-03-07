@@ -16,9 +16,16 @@ import {
   subDays,
 } from "date-fns";
 import { DateTimeFormatter, LocalDate, LocalDateTime, Period } from "js-joda";
+import {
+  addDay,
+  iso8601,
+  format as tempoFormat,
+  isBefore as tempoIsBefore,
+  isAfter as tempoIsAfter,
+} from "@formkit/tempo";
 
 const Home: NextPage = () => {
-  var dateNow = Date.now();
+  var date = new Date();
   // dayjs.extend(utc);
   // dayjs.extend(timezone);
 
@@ -26,9 +33,12 @@ const Home: NextPage = () => {
   const jodaISO = LocalDateTime.parse("2022-04-01T00:00:00");
   const jodaFormatter = DateTimeFormatter.ofPattern("yyyy年M月d日 HH:mm:ss");
 
+  /**
+   * Diff
+   */
   let dayjsDiff;
   try {
-    dayjsDiff = dayjs(dateNow).diff("2022-04-01T00:00:00", "year", true);
+    dayjsDiff = dayjs(date).diff("2022-04-01T00:00:00", "year", true);
   } catch (e) {
     console.log("dayjs : ", e);
     dayjsDiff = "error";
@@ -48,7 +58,7 @@ const Home: NextPage = () => {
   let dateFnsDiff;
   try {
     dateFnsDiff = differenceInCalendarYears(
-      dateNow,
+      date,
       parseISO("2022-04-01T00:00:00")
     );
   } catch (e) {
@@ -67,9 +77,12 @@ const Home: NextPage = () => {
     jsJodaDiff = "error";
   }
 
+  /**
+   * Add
+   */
   let dayjsAdd;
   try {
-    dayjsAdd = dayjs(dateNow).add(1, "day").format("YYYY年M月D日 HH:mm:ss");
+    dayjsAdd = dayjs(date).add(1, "day").format("YYYY年M月D日 HH:mm:ss");
   } catch (e) {
     console.log("dayjs : ", e);
     dayjsAdd = "error";
@@ -87,7 +100,7 @@ const Home: NextPage = () => {
 
   let dateFnsAdd;
   try {
-    dateFnsAdd = format(addDays(dateNow, 1), "yyyy年M月d日 HH:mm:ss");
+    dateFnsAdd = format(addDays(date, 1), "yyyy年M月d日 HH:mm:ss");
   } catch (e) {
     console.log("date-fns : ", e);
     dateFnsAdd = "error";
@@ -102,9 +115,20 @@ const Home: NextPage = () => {
     jsJodaAdd = "error";
   }
 
+  let tempoAdd;
+  try {
+    tempoAdd = tempoFormat(addDay(date, 1), "YYYY年M月D日 HH:mm:ss");
+  } catch (e) {
+    console.log("tempo : ", e);
+    tempoAdd = "error";
+  }
+
+  /**
+   * Subtract
+   */
   let dayjsSubtract;
   try {
-    dayjsSubtract = dayjs(dateNow)
+    dayjsSubtract = dayjs(date)
       .subtract(1, "day")
       .format("YYYY年M月D日 HH:mm:ss");
   } catch (e) {
@@ -124,7 +148,7 @@ const Home: NextPage = () => {
 
   let dateFnsSubtract;
   try {
-    dateFnsSubtract = format(subDays(dateNow, 1), "yyyy年M月d日 HH:mm:ss");
+    dateFnsSubtract = format(subDays(date, 1), "yyyy年M月d日 HH:mm:ss");
   } catch (e) {
     console.log("date-fns : ", e);
     dateFnsSubtract = "error";
@@ -139,6 +163,17 @@ const Home: NextPage = () => {
     jsJodaSubtract = "error";
   }
 
+  let tempoSubtract;
+  try {
+    tempoSubtract = tempoFormat(addDay(date, -1), "YYYY年M月D日 HH:mm:ss");
+  } catch (e) {
+    console.log("tempo : ", e);
+    tempoSubtract = "error";
+  }
+
+  /**
+   * Valid
+   */
   let dayjsValid;
   try {
     dayjsValid = dayjs("2022-02-29").isValid();
@@ -163,18 +198,31 @@ const Home: NextPage = () => {
     dateFnsValid = "error";
   }
 
+  // js-jodaにはvalidに相当する機能がないため、parseでエラーが出なければ有効とする
   let jsJodaValid;
   try {
     const localData = LocalDate.parse("2022-02-29");
     jsJodaValid = localData ? "true" : "false";
   } catch (e) {
     console.log("js-joda : ", e);
-    jsJodaValid = "error";
+    jsJodaValid = "false";
   }
 
+  // tempoにはvalidに相当する機能がないため、parseでエラーが出なければ有効とする
+  let tempoValid;
+  try {
+    tempoValid = iso8601("2022-02-29");
+  } catch (e) {
+    console.log("tempo : ", e);
+    tempoValid = "error";
+  }
+
+  /**
+   * Before & After
+   */
   let dayjsBefore;
   try {
-    dayjsBefore = dayjs("2022-04-01T00:00:00").isBefore(dayjs(dateNow));
+    dayjsBefore = dayjs("2022-04-01T00:00:00").isBefore(dayjs(date));
   } catch (e) {
     console.log("dayjs : ", e);
     dayjsBefore = "error";
@@ -182,7 +230,7 @@ const Home: NextPage = () => {
 
   let dayjsAfter;
   try {
-    dayjsAfter = dayjs("2099-04-01T00:00:00").isAfter(dayjs(dateNow));
+    dayjsAfter = dayjs("2099-04-01T00:00:00").isAfter(dayjs(date));
   } catch (e) {
     console.log("dayjs : ", e);
     dayjsAfter = "error";
@@ -208,7 +256,7 @@ const Home: NextPage = () => {
 
   let dateFnsBefore;
   try {
-    dateFnsBefore = isBefore(parseISO("2022-04-01T00:00:00"), dateNow)
+    dateFnsBefore = isBefore(parseISO("2022-04-01T00:00:00"), date)
       ? true
       : false;
   } catch (e) {
@@ -218,7 +266,7 @@ const Home: NextPage = () => {
 
   let dateFnsAfter;
   try {
-    dateFnsAfter = isAfter(parseISO("2099-04-01T00:00:00"), dateNow)
+    dateFnsAfter = isAfter(parseISO("2099-04-01T00:00:00"), date)
       ? true
       : false;
   } catch (e) {
@@ -244,15 +292,31 @@ const Home: NextPage = () => {
     jsJodaAfter = "error";
   }
 
+  let tempoBefore;
+  try {
+    tempoBefore = tempoIsBefore("2022-04-01T00:00:00", date);
+  } catch (e) {
+    console.log("tempo : ", e);
+    tempoBefore = "error";
+  }
+
+  let tempoAfter;
+  try {
+    tempoAfter = tempoIsAfter("2099-04-01T00:00:00", date);
+  } catch (e) {
+    console.log("tempo : ", e);
+    tempoAfter = "error";
+  }
+
   return (
     <div className={styles.container}>
       <h1>Moment Alternatives Demo</h1>
       <div>
-        <h2>Day.js</h2>
+        <h2>Day.js latest</h2>
         <table>
           <tbody>
             <tr>
-              <td>format : from date.now</td>
+              <td>format : from Date</td>
               <td>format : from ISO string</td>
               <td>diff : now ↔︎ 2022-04-01</td>
               <td>add : now + 1day</td>
@@ -262,7 +326,7 @@ const Home: NextPage = () => {
               <td>isAfter : now → 2099-04-01</td>
             </tr>
             <tr>
-              <td>{dayjs(dateNow).format("YYYY年M月D日 HH:mm:ss")}</td>
+              <td>{dayjs(date).format("YYYY年M月D日 HH:mm:ss")}</td>
               <td>
                 {dayjs("2022-04-01T00:00:00").format("YYYY年M月D日 HH:mm:ss")}
               </td>
@@ -281,7 +345,7 @@ const Home: NextPage = () => {
         <table>
           <tbody>
             <tr>
-              <td>format : from date.now</td>
+              <td>format : from Date</td>
               <td>format : from ISO string</td>
               <td>diff : now ↔︎ 2022-04-01</td>
               <td>add : now + 1day</td>
@@ -312,7 +376,7 @@ const Home: NextPage = () => {
         <table>
           <tbody>
             <tr>
-              <td>format : from date.now</td>
+              <td>format : from Date</td>
               <td>format : from ISO string</td>
               <td>diff : now ↔︎ 2022-04-01</td>
               <td>add : now + 1day</td>
@@ -322,7 +386,7 @@ const Home: NextPage = () => {
               <td>isAfter : now → 2099-04-01</td>
             </tr>
             <tr>
-              <td>{format(dateNow, "yyyy年M月d日 HH:mm:ss")}</td>
+              <td>{format(date, "yyyy年M月d日 HH:mm:ss")}</td>
               <td>
                 {format(
                   parseISO("2022-04-01T00:00:00"),
@@ -340,11 +404,11 @@ const Home: NextPage = () => {
         </table>
       </div>
       <div>
-        <h2>js-Joda</h2>
+        <h2>js-Joda latest</h2>
         <table>
           <tbody>
             <tr>
-              <td>format : from date.now</td>
+              <td>format : from Date</td>
               <td>format : from ISO string</td>
               <td>diff : now ↔︎ 2022-04-01</td>
               <td>add : now + 1day</td>
@@ -362,6 +426,35 @@ const Home: NextPage = () => {
               <td>{jsJodaValid.toString()}</td>
               <td>{jsJodaBefore.toString()}</td>
               <td>{jsJodaAfter.toString()}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h2>Tempo latest</h2>
+        <table>
+          <tbody>
+            <tr>
+              <td>format : from Date</td>
+              <td>format : from ISO string</td>
+              <td>diff : now ↔︎ 2022-04-01</td>
+              <td>add : now + 1day</td>
+              <td>sub : now - 1day</td>
+              <td>valid : 2022-02-29</td>
+              <td>isBefore : now → 2022-04-01</td>
+              <td>isAfter : now → 2099-04-01</td>
+            </tr>
+            <tr>
+              <td>{tempoFormat(date, "YYYY年M月D日 HH:mm:ss")}</td>
+              <td>
+                {tempoFormat("2022-04-01T00:00:00", "YYYY年M月D日 HH:mm:ss")}
+              </td>
+              <td>not supported</td>
+              <td>{tempoAdd}</td>
+              <td>{tempoSubtract}</td>
+              <td>{tempoValid.toString()}</td>
+              <td>{tempoBefore.toString()}</td>
+              <td>{tempoAfter.toString()}</td>
             </tr>
           </tbody>
         </table>
