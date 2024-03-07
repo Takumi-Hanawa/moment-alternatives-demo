@@ -23,6 +23,7 @@ import {
   isBefore as tempoIsBefore,
   isAfter as tempoIsAfter,
 } from "@formkit/tempo";
+import { utcToZonedTime } from "date-fns-tz";
 
 const Home: NextPage = () => {
   var date = new Date();
@@ -32,6 +33,8 @@ const Home: NextPage = () => {
   const jodaNow = LocalDateTime.now();
   const jodaISO = LocalDateTime.parse("2022-04-01T00:00:00");
   const jodaFormatter = DateTimeFormatter.ofPattern("yyyy年M月d日 HH:mm:ss");
+
+  const jstDateTime = utcToZonedTime(date, "Asia/Tokyo");
 
   /**
    * Diff
@@ -58,7 +61,7 @@ const Home: NextPage = () => {
   let dateFnsDiff;
   try {
     dateFnsDiff = differenceInCalendarYears(
-      date,
+      jstDateTime,
       parseISO("2022-04-01T00:00:00")
     );
   } catch (e) {
@@ -100,7 +103,7 @@ const Home: NextPage = () => {
 
   let dateFnsAdd;
   try {
-    dateFnsAdd = format(addDays(date, 1), "yyyy年M月d日 HH:mm:ss");
+    dateFnsAdd = format(addDays(jstDateTime, 1), "yyyy年M月d日 HH:mm:ss");
   } catch (e) {
     console.log("date-fns : ", e);
     dateFnsAdd = "error";
@@ -148,7 +151,7 @@ const Home: NextPage = () => {
 
   let dateFnsSubtract;
   try {
-    dateFnsSubtract = format(subDays(date, 1), "yyyy年M月d日 HH:mm:ss");
+    dateFnsSubtract = format(subDays(jstDateTime, 1), "yyyy年M月d日 HH:mm:ss");
   } catch (e) {
     console.log("date-fns : ", e);
     dateFnsSubtract = "error";
@@ -256,7 +259,7 @@ const Home: NextPage = () => {
 
   let dateFnsBefore;
   try {
-    dateFnsBefore = isBefore(parseISO("2022-04-01T00:00:00"), date)
+    dateFnsBefore = isBefore(parseISO("2022-04-01T00:00:00"), jstDateTime)
       ? true
       : false;
   } catch (e) {
@@ -266,7 +269,7 @@ const Home: NextPage = () => {
 
   let dateFnsAfter;
   try {
-    dateFnsAfter = isAfter(parseISO("2099-04-01T00:00:00"), date)
+    dateFnsAfter = isAfter(parseISO("2099-04-01T00:00:00"), jstDateTime)
       ? true
       : false;
   } catch (e) {
@@ -326,7 +329,7 @@ const Home: NextPage = () => {
               <td>isAfter : now → 2099-04-01</td>
             </tr>
             <tr>
-              <td>{dayjs(date).format("YYYY年M月D日 HH:mm:ss")}</td>
+              <td>{dayjs(jstDateTime).format("YYYY年M月D日 HH:mm:ss")}</td>
               <td>
                 {dayjs("2022-04-01T00:00:00").format("YYYY年M月D日 HH:mm:ss")}
               </td>
@@ -386,7 +389,7 @@ const Home: NextPage = () => {
               <td>isAfter : now → 2099-04-01</td>
             </tr>
             <tr>
-              <td>{format(date, "yyyy年M月d日 HH:mm:ss")}</td>
+              <td>{format(jstDateTime, "yyyy年M月d日 HH:mm:ss")}</td>
               <td>
                 {format(
                   parseISO("2022-04-01T00:00:00"),
