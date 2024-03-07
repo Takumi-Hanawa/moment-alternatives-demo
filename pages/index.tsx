@@ -317,6 +317,7 @@ const Home: NextPage = () => {
           <tbody>
             <tr>
               <td>format : from Date</td>
+              <td>format : from Date.now()</td>
               <td>format : from ISO string</td>
               <td>diff : now ↔︎ 2022-04-01</td>
               <td>add : now + 1day</td>
@@ -327,6 +328,7 @@ const Home: NextPage = () => {
             </tr>
             <tr>
               <td>{dayjs(date).format("YYYY年M月D日 HH:mm:ss")}</td>
+              <td>{dayjs(Date.now()).format("YYYY年M月D日 HH:mm:ss")}</td>
               <td>
                 {dayjs("2022-04-01T00:00:00").format("YYYY年M月D日 HH:mm:ss")}
               </td>
