@@ -38,6 +38,11 @@ import {
 } from "@formkit/tempo";
 import { utcToZonedTime } from "date-fns-tz";
 
+if ("__setDefaultTimeZone" in Intl.DateTimeFormat) {
+  // @ts-ignore
+  Intl.DateTimeFormat.__setDefaultTimeZone("Asia/Tokyo");
+}
+
 const date = new Date();
 
 const Home: NextPage = () => {
@@ -58,7 +63,7 @@ const Home: NextPage = () => {
    */
   let dayjsDiff;
   try {
-    dayjsDiff = dayjs(date).diff("2022-04-01T00:00:00", "year", true);
+    dayjsDiff = dayjs(jstDateTime).diff("2022-04-01T00:00:00", "year", true);
   } catch (e) {
     console.log("dayjs : ", e);
     dayjsDiff = "error";
@@ -402,7 +407,7 @@ const Home: NextPage = () => {
               </td>
             </tr>
             <tr>
-              <td>{dayjs(jstDateTime).format("YYYY年M月D日 HH:mm:ss")}</td>
+              <td>{dayjs(date).format("YYYY年M月D日 HH:mm:ss")}</td>
               <td>
                 {dayjs("2022-04-01T00:00:00").format("YYYY年M月D日 HH:mm:ss")}
               </td>
