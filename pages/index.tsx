@@ -6,8 +6,8 @@ import type { NextPage } from "next";
 import styles from "../styles/Home.module.css";
 
 import dayjs from "dayjs";
-// import utc from "dayjs/plugin/utc";
-// import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
 import { DateTime } from "luxon";
 import {
   addDays,
@@ -46,8 +46,8 @@ if ("__setDefaultTimeZone" in Intl.DateTimeFormat) {
 const date = new Date();
 
 const Home: NextPage = () => {
-  // dayjs.extend(utc);
-  // dayjs.extend(timezone);
+  dayjs.extend(utc);
+  dayjs.extend(timezone);
 
   const jodaNow = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
   const jodaISO = ZonedDateTime.of(
