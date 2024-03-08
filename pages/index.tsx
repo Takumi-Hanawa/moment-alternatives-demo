@@ -397,9 +397,9 @@ const Home: NextPage = () => {
                   .toFormat("yyyy年M月d日 HH:mm:ss")}
               </td>
               <td>
-                {DateTime.fromISO("2022-04-01T00:00:00")
-                  .setZone("Asia/Tokyo")
-                  .toFormat("yyyy年M月d日 HH:mm:ss")}
+                {DateTime.fromISO("2022-04-01T00:00:00", {
+                  zone: "Asia/Tokyo",
+                }).toFormat("yyyy年M月d日 HH:mm:ss")}
               </td>
               <td>{luxonDiff} year</td>
               <td>{luxonAdd}</td>
