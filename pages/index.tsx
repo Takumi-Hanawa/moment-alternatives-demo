@@ -7,7 +7,6 @@ import dayjs from "dayjs";
 import { DateTime } from "luxon";
 import {
   addDays,
-  differenceInCalendarYears,
   differenceInYears,
   format,
   isAfter,
@@ -412,7 +411,7 @@ const Home: NextPage = () => {
         </table>
       </div>
       <div>
-        <h2>Luxon 1.28.1</h2>
+        <h2>Luxon latest</h2>
         <table>
           <tbody>
             <tr>
