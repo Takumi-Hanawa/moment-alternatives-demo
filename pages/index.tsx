@@ -352,14 +352,48 @@ const Home: NextPage = () => {
         <table>
           <tbody>
             <tr>
-              <td>format : from Date</td>
-              <td>format : from ISO string</td>
-              <td>diff : now ↔︎ 2022-04-01</td>
-              <td>add : now + 1day</td>
-              <td>sub : now - 1day</td>
-              <td>valid : 2022-02-29</td>
-              <td>isBefore : now → 2022-04-01</td>
-              <td>isAfter : now → 2099-04-01</td>
+              <td>
+                <b>format</b>
+                <br />
+                <code>format(new Date,"YYYY年M月D日 HH:mm:ss")</code>
+              </td>
+              <td>
+                <b>format</b>
+                <br />
+                <code>
+                  format("2022-04-01T00:00:00","YYYY年M月D日 HH:mm:ss")
+                </code>
+              </td>
+              <td>
+                <b>diff</b>
+                <br />
+                <code>diff(new Date,"2022-04-01T00:00:00")</code>
+              </td>
+              <td>
+                <b>add</b>
+                <br />
+                <code>add(new Date,1)</code>
+              </td>
+              <td>
+                <b>sub</b>
+                <br />
+                <code>sub(new Date,1)</code>
+              </td>
+              <td>
+                <b>isValid</b>
+                <br />
+                <code>isValid("2022-02-29T00:00:00")</code>
+              </td>
+              <td>
+                <b>isBefore</b>
+                <br />
+                <code>isBefore(new Date, "2022-04-01T00:00:00")</code>
+              </td>
+              <td>
+                <b>isAfter</b>
+                <br />
+                <code>isAfter(new Date, "2099-04-01T00:00:00")</code>
+              </td>
             </tr>
             <tr>
               <td>{dayjs(jstDateTime).format("YYYY年M月D日 HH:mm:ss")}</td>
@@ -381,14 +415,48 @@ const Home: NextPage = () => {
         <table>
           <tbody>
             <tr>
-              <td>format : from Date</td>
-              <td>format : from ISO string</td>
-              <td>diff : now ↔︎ 2022-04-01</td>
-              <td>add : now + 1day</td>
-              <td>sub : now - 1day</td>
-              <td>valid : 2022-02-29</td>
-              <td>isBefore : now → 2022-04-01</td>
-              <td>isAfter : now → 2099-04-01</td>
+              <td>
+                <b>format</b>
+                <br />
+                <code>format(new Date,"YYYY年M月D日 HH:mm:ss")</code>
+              </td>
+              <td>
+                <b>format</b>
+                <br />
+                <code>
+                  format("2022-04-01T00:00:00","YYYY年M月D日 HH:mm:ss")
+                </code>
+              </td>
+              <td>
+                <b>diff</b>
+                <br />
+                <code>diff(new Date,"2022-04-01T00:00:00")</code>
+              </td>
+              <td>
+                <b>add</b>
+                <br />
+                <code>add(new Date,1)</code>
+              </td>
+              <td>
+                <b>sub</b>
+                <br />
+                <code>sub(new Date,1)</code>
+              </td>
+              <td>
+                <b>isValid</b>
+                <br />
+                <code>isValid("2022-02-29T00:00:00")</code>
+              </td>
+              <td>
+                <b>isBefore</b>
+                <br />
+                <code>isBefore(new Date, "2022-04-01T00:00:00")</code>
+              </td>
+              <td>
+                <b>isAfter</b>
+                <br />
+                <code>isAfter(new Date, "2099-04-01T00:00:00")</code>
+              </td>
             </tr>
             <tr>
               <td>
@@ -416,14 +484,48 @@ const Home: NextPage = () => {
         <table>
           <tbody>
             <tr>
-              <td>format : from Date</td>
-              <td>format : from ISO string</td>
-              <td>diff : now ↔︎ 2022-04-01</td>
-              <td>add : now + 1day</td>
-              <td>sub : now - 1day</td>
-              <td>valid : 2022-02-29</td>
-              <td>isBefore : now → 2022-04-01</td>
-              <td>isAfter : now → 2099-04-01</td>
+              <td>
+                <b>format</b>
+                <br />
+                <code>format(new Date,"YYYY年M月D日 HH:mm:ss")</code>
+              </td>
+              <td>
+                <b>format</b>
+                <br />
+                <code>
+                  format("2022-04-01T00:00:00","YYYY年M月D日 HH:mm:ss")
+                </code>
+              </td>
+              <td>
+                <b>diff</b>
+                <br />
+                <code>diff(new Date,"2022-04-01T00:00:00")</code>
+              </td>
+              <td>
+                <b>add</b>
+                <br />
+                <code>add(new Date,1)</code>
+              </td>
+              <td>
+                <b>sub</b>
+                <br />
+                <code>sub(new Date,1)</code>
+              </td>
+              <td>
+                <b>isValid</b>
+                <br />
+                <code>isValid("2022-02-29T00:00:00")</code>
+              </td>
+              <td>
+                <b>isBefore</b>
+                <br />
+                <code>isBefore(new Date, "2022-04-01T00:00:00")</code>
+              </td>
+              <td>
+                <b>isAfter</b>
+                <br />
+                <code>isAfter(new Date, "2099-04-01T00:00:00")</code>
+              </td>
             </tr>
             <tr>
               <td>{format(jstDateTime, "yyyy年M月d日 HH:mm:ss")}</td>
@@ -448,14 +550,48 @@ const Home: NextPage = () => {
         <table>
           <tbody>
             <tr>
-              <td>format : from Date</td>
-              <td>format : from ISO string</td>
-              <td>diff : now ↔︎ 2022-04-01</td>
-              <td>add : now + 1day</td>
-              <td>sub : now - 1day</td>
-              <td>valid : 2022-02-29</td>
-              <td>isBefore : now → 2022-04-01</td>
-              <td>isAfter : now → 2099-04-01</td>
+              <td>
+                <b>format</b>
+                <br />
+                <code>format(new Date,"YYYY年M月D日 HH:mm:ss")</code>
+              </td>
+              <td>
+                <b>format</b>
+                <br />
+                <code>
+                  format("2022-04-01T00:00:00","YYYY年M月D日 HH:mm:ss")
+                </code>
+              </td>
+              <td>
+                <b>diff</b>
+                <br />
+                <code>diff(new Date,"2022-04-01T00:00:00")</code>
+              </td>
+              <td>
+                <b>add</b>
+                <br />
+                <code>add(new Date,1)</code>
+              </td>
+              <td>
+                <b>sub</b>
+                <br />
+                <code>sub(new Date,1)</code>
+              </td>
+              <td>
+                <b>isValid</b>
+                <br />
+                <code>isValid("2022-02-29T00:00:00")</code>
+              </td>
+              <td>
+                <b>isBefore</b>
+                <br />
+                <code>isBefore(new Date, "2022-04-01T00:00:00")</code>
+              </td>
+              <td>
+                <b>isAfter</b>
+                <br />
+                <code>isAfter(new Date, "2099-04-01T00:00:00")</code>
+              </td>
             </tr>
             <tr>
               <td>{jodaNow.format(jodaFormatter)}</td>
@@ -475,14 +611,48 @@ const Home: NextPage = () => {
         <table>
           <tbody>
             <tr>
-              <td>format : from Date</td>
-              <td>format : from ISO string</td>
-              <td>diff : now ↔︎ 2022-04-01</td>
-              <td>add : now + 1day</td>
-              <td>sub : now - 1day</td>
-              <td>valid : 2022-02-29</td>
-              <td>isBefore : now → 2022-04-01</td>
-              <td>isAfter : now → 2099-04-01</td>
+              <td>
+                <b>format</b>
+                <br />
+                <code>format(new Date,"YYYY年M月D日 HH:mm:ss")</code>
+              </td>
+              <td>
+                <b>format</b>
+                <br />
+                <code>
+                  format("2022-04-01T00:00:00","YYYY年M月D日 HH:mm:ss")
+                </code>
+              </td>
+              <td>
+                <b>diff</b>
+                <br />
+                <code>diff(new Date,"2022-04-01T00:00:00")</code>
+              </td>
+              <td>
+                <b>add</b>
+                <br />
+                <code>add(new Date,1)</code>
+              </td>
+              <td>
+                <b>sub</b>
+                <br />
+                <code>sub(new Date,1)</code>
+              </td>
+              <td>
+                <b>isValid</b>
+                <br />
+                <code>isValid("2022-02-29T00:00:00")</code>
+              </td>
+              <td>
+                <b>isBefore</b>
+                <br />
+                <code>isBefore(new Date, "2022-04-01T00:00:00")</code>
+              </td>
+              <td>
+                <b>isAfter</b>
+                <br />
+                <code>isAfter(new Date, "2099-04-01T00:00:00")</code>
+              </td>
             </tr>
             <tr>
               <td>{tempoFormat(jstDateTime, "YYYY年M月D日 HH:mm:ss")}</td>
