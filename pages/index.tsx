@@ -1,13 +1,9 @@
-import "@formatjs/intl-datetimeformat/polyfill";
-import "@formatjs/intl-datetimeformat/locale-data/ja"; // locale-data for en
-import "@formatjs/intl-datetimeformat/add-all-tz";
-
 import type { NextPage } from "next";
 import styles from "../styles/Home.module.css";
 
 import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import timezone from "dayjs/plugin/timezone";
+// import utc from "dayjs/plugin/utc";
+// import timezone from "dayjs/plugin/timezone";
 import { DateTime } from "luxon";
 import {
   addDays,
@@ -38,16 +34,9 @@ import {
 } from "@formkit/tempo";
 import { utcToZonedTime } from "date-fns-tz";
 
-if ("__setDefaultTimeZone" in Intl.DateTimeFormat) {
-  // @ts-ignore
-  Intl.DateTimeFormat.__setDefaultTimeZone("Asia/Tokyo");
-}
-
-const date = new Date();
-
 const Home: NextPage = () => {
-  dayjs.extend(utc);
-  dayjs.extend(timezone);
+  // dayjs.extend(utc);
+  // dayjs.extend(timezone);
 
   const jodaNow = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
   const jodaISO = ZonedDateTime.of(
@@ -407,7 +396,7 @@ const Home: NextPage = () => {
               </td>
             </tr>
             <tr>
-              <td>{dayjs(date).format("YYYY年M月D日 HH:mm:ss")}</td>
+              <td>{dayjs(jstDateTime).format("YYYY年M月D日 HH:mm:ss")}</td>
               <td>
                 {dayjs("2022-04-01T00:00:00").format("YYYY年M月D日 HH:mm:ss")}
               </td>
