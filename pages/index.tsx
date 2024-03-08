@@ -38,6 +38,8 @@ import {
 } from "@formkit/tempo";
 import { utcToZonedTime } from "date-fns-tz";
 
+const date = new Date();
+
 const Home: NextPage = () => {
   // dayjs.extend(utc);
   // dayjs.extend(timezone);
@@ -56,7 +58,7 @@ const Home: NextPage = () => {
    */
   let dayjsDiff;
   try {
-    dayjsDiff = dayjs(jstDateTime).diff("2022-04-01T00:00:00", "year", true);
+    dayjsDiff = dayjs(date).diff("2022-04-01T00:00:00", "year", true);
   } catch (e) {
     console.log("dayjs : ", e);
     dayjsDiff = "error";
