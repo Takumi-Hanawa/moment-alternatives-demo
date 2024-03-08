@@ -396,7 +396,7 @@ const Home: NextPage = () => {
               </td>
             </tr>
             <tr>
-              <td>{dayjs(new Date()).format("YYYY年M月D日 HH:mm:ss")}</td>
+              <td>{dayjs(jstDateTime).format("YYYY年M月D日 HH:mm:ss")}</td>
               <td>
                 {dayjs("2022-04-01T00:00:00").format("YYYY年M月D日 HH:mm:ss")}
               </td>
