@@ -1,3 +1,7 @@
+import "@formatjs/intl-datetimeformat/polyfill";
+import "@formatjs/intl-datetimeformat/locale-data/ja"; // locale-data for en
+import "@formatjs/intl-datetimeformat/add-all-tz";
+
 import type { NextPage } from "next";
 import styles from "../styles/Home.module.css";
 
