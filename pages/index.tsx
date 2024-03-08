@@ -2,8 +2,8 @@ import type { NextPage } from "next";
 import styles from "../styles/Home.module.css";
 
 import dayjs from "dayjs";
-// import utc from "dayjs/plugin/utc";
-// import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
 import { DateTime } from "luxon";
 import {
   addDays,
@@ -35,8 +35,8 @@ import {
 import { utcToZonedTime } from "date-fns-tz";
 
 const Home: NextPage = () => {
-  // dayjs.extend(utc);
-  // dayjs.extend(timezone);
+  dayjs.extend(utc);
+  dayjs.extend(timezone);
 
   const jodaNow = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
   const jodaISO = ZonedDateTime.of(
@@ -396,7 +396,7 @@ const Home: NextPage = () => {
               </td>
             </tr>
             <tr>
-              <td>{dayjs(jstDateTime).format("YYYY年M月D日 HH:mm:ss")}</td>
+              <td>{dayjs(new Date()).format("YYYY年M月D日 HH:mm:ss")}</td>
               <td>
                 {dayjs("2022-04-01T00:00:00").format("YYYY年M月D日 HH:mm:ss")}
               </td>
