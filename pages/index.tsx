@@ -8,6 +8,7 @@ import { DateTime } from "luxon";
 import {
   addDays,
   differenceInCalendarYears,
+  differenceInYears,
   format,
   isAfter,
   isBefore,
@@ -73,7 +74,7 @@ const Home: NextPage = () => {
 
   let dateFnsDiff;
   try {
-    dateFnsDiff = differenceInCalendarYears(
+    dateFnsDiff = differenceInYears(
       jstDateTime,
       parseISO("2022-04-01T00:00:00")
     );
