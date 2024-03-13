@@ -50,8 +50,8 @@ const Home: NextPage = () => {
 
   const jstDateTime = utcToZonedTime(new Date(), "Asia/Tokyo");
 
-  console.log("new Date() :", new Date());
-  console.log("Date Object (Polyfilled): ", jstDateTime);
+  console.log(new Date());
+  console.log(jstDateTime);
 
   /**
    * Diff
