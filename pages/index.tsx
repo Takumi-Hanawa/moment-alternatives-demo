@@ -12,6 +12,7 @@ import {
   isAfter,
   isBefore,
   isValid,
+  parse,
   parseISO,
   subDays,
 } from "date-fns";
@@ -35,6 +36,8 @@ import {
 import { utcToZonedTime } from "date-fns-tz";
 
 const Home: NextPage = () => {
+  console.log(isValid(parse("20220427", "yyyy-MM-dd", new Date())));
+
   dayjs.extend(utc);
   dayjs.extend(timezone);
 
@@ -46,6 +49,9 @@ const Home: NextPage = () => {
   const jodaFormatter = DateTimeFormatter.ofPattern("yyyy年M月d日 HH:mm:ss");
 
   const jstDateTime = utcToZonedTime(new Date(), "Asia/Tokyo");
+
+  console.log("new Date() :", new Date());
+  console.log("Date Object (Polyfilled): ", jstDateTime);
 
   /**
    * Diff
@@ -213,7 +219,7 @@ const Home: NextPage = () => {
 
   let dateFnsValid;
   try {
-    dateFnsValid = isValid(parseISO("2022-02-29"));
+    dateFnsValid = isValid(new Date("2022-02-29"));
   } catch (e) {
     console.log("date-fns : ", e);
     dateFnsValid = "error";
