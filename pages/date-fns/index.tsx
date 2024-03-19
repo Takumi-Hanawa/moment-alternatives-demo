@@ -10,13 +10,6 @@ const DateFns: NextPage = () => {
     console.error("utcToZonedTime: ", error);
   }
 
-  try {
-    const jstDate = utcToZonedTime(new Date("2024-01-01"), "Asia/Tokyo");
-    console.log("utcToZonedTime from YYYY-DD-MM: ", jstDate);
-  } catch (error) {
-    console.error("utcToZonedTime from YYYY-DD-MM: ", error);
-  }
-
   return (
     <div>
       <h1>date-fns Demo</h1>
