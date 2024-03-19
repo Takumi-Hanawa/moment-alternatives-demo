@@ -50,9 +50,6 @@ const Home: NextPage = () => {
 
   const jstDateTime = utcToZonedTime(new Date(), "Asia/Tokyo");
 
-  console.log(new Date());
-  console.log(jstDateTime);
-
   /**
    * Diff
    */
