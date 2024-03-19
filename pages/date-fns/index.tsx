@@ -30,6 +30,7 @@ const DateFns: NextPage = () => {
     <div>
       <h1>date-fns Demo</h1>
       <p>{formattedDateFromISOStr}</p>
+      <p>{formattedDateFromParsedISOStr}</p>
     </div>
   );
 };
