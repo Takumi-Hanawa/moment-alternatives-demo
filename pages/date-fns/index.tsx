@@ -7,7 +7,7 @@ const DateFns: NextPage = () => {
   let formattedDateFromISOStr;
   try {
     formattedDateFromISOStr = format(
-      new Date("2024-01-01T00:00:00"),
+      utcToZonedTime(new Date("2024-01-01T00:00:00Z"), "Asia/Tokyo"),
       "yyyy-MM-dd HH:mm:ss"
     );
   } catch (error) {
@@ -17,7 +17,7 @@ const DateFns: NextPage = () => {
   let formattedDateFromParsedISOStr;
   try {
     formattedDateFromParsedISOStr = format(
-      parseISO("2024-01-01T00:00:00"),
+      utcToZonedTime(parseISO("2024-01-01T00:00:00Z"), "Asia/Tokyo"),
       "yyyy-MM-dd HH:mm:ss"
     );
   } catch (error) {
