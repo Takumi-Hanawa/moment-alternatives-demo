@@ -4,16 +4,24 @@ import { format, utcToZonedTime } from "date-fns-tz";
 import { parseISO } from "date-fns";
 
 const DateFns: NextPage = () => {
-  let dateObjFromStr;
+  let formattedDateFromISOStr;
   try {
-    dateObjFromStr = utcToZonedTime("2024-01-01T00:00:00", "Asia/Tokyo");
+    formattedDateFromISOStr = format(
+      utcToZonedTime("2024-01-01T00:00:00", "Asia/Tokyo"),
+      "yyyy-MM-dd HH:mm:ss"
+    );
   } catch (error) {
-    console.log("dateObjFromStr : ", error);
+    console.log("formattedDate : ", error);
   }
 
-  let formattedDate;
+  let formattedDateFromParsedISOStr;
   try {
-    formattedDate = format(dateObjFromStr || new Date(), "yyyy-MM-dd HH:mm:ss");
+    formattedDateFromParsedISOStr = format(
+      parseISO("2024-01-01T00:00:00"),
+      "yyyy-MM-dd HH:mm:ss"
+    );
+
+    console.log(parseISO("2024-01-01T00:00:00"));
   } catch (error) {
     console.log("formattedDate : ", error);
   }
@@ -21,7 +29,7 @@ const DateFns: NextPage = () => {
   return (
     <div>
       <h1>date-fns Demo</h1>
-      <p>{formattedDate}</p>
+      <p>{formattedDateFromISOStr}</p>
     </div>
   );
 };
