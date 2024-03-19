@@ -41,12 +41,12 @@ const Home: NextPage = () => {
   dayjs.extend(utc);
   dayjs.extend(timezone);
 
-  const jodaNow = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
-  const jodaISO = ZonedDateTime.of(
-    LocalDateTime.parse("2022-04-01T00:00:00"),
-    ZoneId.of("Asia/Tokyo")
-  );
-  const jodaFormatter = DateTimeFormatter.ofPattern("yyyy年M月d日 HH:mm:ss");
+  // const jodaNow = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
+  // const jodaISO = ZonedDateTime.of(
+  //   LocalDateTime.parse("2022-04-01T00:00:00"),
+  //   ZoneId.of("Asia/Tokyo")
+  // );
+  // const jodaFormatter = DateTimeFormatter.ofPattern("yyyy年M月d日 HH:mm:ss");
 
   const jstDateTime = utcToZonedTime(new Date(), "Asia/Tokyo");
 
@@ -126,14 +126,14 @@ const Home: NextPage = () => {
     dateFnsAdd = "error";
   }
 
-  let jsJodaAdd;
-  try {
-    const jodaAdd = jodaNow.plusDays(1);
-    jsJodaAdd = jodaAdd.format(jodaFormatter);
-  } catch (e) {
-    console.log("js-joda : ", e);
-    jsJodaAdd = "error";
-  }
+  // let jsJodaAdd;
+  // try {
+  //   const jodaAdd = jodaNow.plusDays(1);
+  //   jsJodaAdd = jodaAdd.format(jodaFormatter);
+  // } catch (e) {
+  //   console.log("js-joda : ", e);
+  //   jsJodaAdd = "error";
+  // }
 
   let tempoAdd;
   try {
@@ -175,14 +175,14 @@ const Home: NextPage = () => {
     dateFnsSubtract = "error";
   }
 
-  let jsJodaSubtract;
-  try {
-    const jodaSubtract = jodaNow.minusDays(1);
-    jsJodaSubtract = jodaSubtract.format(jodaFormatter);
-  } catch (e) {
-    console.log("js-joda : ", e);
-    jsJodaSubtract = "error";
-  }
+  // let jsJodaSubtract;
+  // try {
+  //   const jodaSubtract = jodaNow.minusDays(1);
+  //   jsJodaSubtract = jodaSubtract.format(jodaFormatter);
+  // } catch (e) {
+  //   console.log("js-joda : ", e);
+  //   jsJodaSubtract = "error";
+  // }
 
   let tempoSubtract;
   try {
@@ -306,29 +306,29 @@ const Home: NextPage = () => {
     dateFnsAfter = "error";
   }
 
-  let jsJodaBefore;
-  try {
-    const jodaBefore = ZonedDateTime.of(
-      LocalDateTime.parse("2022-04-01T00:00:00"),
-      ZoneId.of("Asia/Tokyo")
-    );
-    jsJodaBefore = jodaBefore.isBefore(jodaNow);
-  } catch (e) {
-    console.log("js-joda : ", e);
-    jsJodaBefore = "error";
-  }
+  // let jsJodaBefore;
+  // try {
+  //   const jodaBefore = ZonedDateTime.of(
+  //     LocalDateTime.parse("2022-04-01T00:00:00"),
+  //     ZoneId.of("Asia/Tokyo")
+  //   );
+  //   jsJodaBefore = jodaBefore.isBefore(jodaNow);
+  // } catch (e) {
+  //   console.log("js-joda : ", e);
+  //   jsJodaBefore = "error";
+  // }
 
-  let jsJodaAfter;
-  try {
-    const jodaAfter = ZonedDateTime.of(
-      LocalDateTime.parse("2099-04-01T00:00:00"),
-      ZoneId.of("Asia/Tokyo")
-    );
-    jsJodaAfter = jodaAfter.isAfter(jodaNow);
-  } catch (e) {
-    console.log("js-joda : ", e);
-    jsJodaAfter = "error";
-  }
+  // let jsJodaAfter;
+  // try {
+  //   const jodaAfter = ZonedDateTime.of(
+  //     LocalDateTime.parse("2099-04-01T00:00:00"),
+  //     ZoneId.of("Asia/Tokyo")
+  //   );
+  //   jsJodaAfter = jodaAfter.isAfter(jodaNow);
+  // } catch (e) {
+  //   console.log("js-joda : ", e);
+  //   jsJodaAfter = "error";
+  // }
 
   let tempoBefore;
   try {
@@ -550,7 +550,7 @@ const Home: NextPage = () => {
           </tbody>
         </table>
       </div>
-      <div>
+      {/* <div>
         <h2>js-Joda latest</h2>
         <table>
           <tbody>
@@ -675,7 +675,7 @@ const Home: NextPage = () => {
             </tr>
           </tbody>
         </table>
-      </div>
+      </div> */}
     </div>
   );
 };
