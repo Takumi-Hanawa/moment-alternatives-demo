@@ -10,7 +10,7 @@ import { utcToZonedTime } from "date-fns-tz";
 import { format } from "date-fns";
 
 const DateFns: NextPage = () => {
-  const jstDateTime = utcToZonedTime(new Date(), "Asia/Tokyo");
+  const jstDateTime = utcToZonedTime("2024-01-01", "Asia/Tokyo");
 
   return (
     <div>
