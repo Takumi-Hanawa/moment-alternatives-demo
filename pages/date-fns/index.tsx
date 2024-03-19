@@ -1,5 +1,9 @@
 import { NextPage } from "next";
 
+import "@formatjs/intl-datetimeformat/polyfill";
+import "@formatjs/intl-datetimeformat/locale-data/en"; // locale-data for en
+import "@formatjs/intl-datetimeformat/add-all-tz";
+
 import { zonedTimeToUtc } from "date-fns-tz";
 
 const DateFns: NextPage = () => {
