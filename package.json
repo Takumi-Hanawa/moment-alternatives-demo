@@ -11,6 +11,7 @@
   "dependencies": {
     "@formatjs/intl-datetimeformat": "^6.12.2",
     "@formatjs/intl-getcanonicallocales": "^2.3.0",
+    "@formatjs/intl-locale": "^3.4.5",
     "@formkit/tempo": "^0.0.15",
     "@js-joda/core": "^5.6.1",
     "@js-joda/timezone": "^2.18.2",
