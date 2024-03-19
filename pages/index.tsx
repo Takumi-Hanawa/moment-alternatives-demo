@@ -16,15 +16,15 @@ import {
   parseISO,
   subDays,
 } from "date-fns";
-import {
-  DateTimeFormatter,
-  LocalDate,
-  LocalDateTime,
-  ZonedDateTime,
-  ZoneId,
-  Period,
-} from "@js-joda/core";
-import "@js-joda/timezone";
+// import {
+//   DateTimeFormatter,
+//   LocalDate,
+//   LocalDateTime,
+//   ZonedDateTime,
+//   ZoneId,
+//   Period,
+// } from "@js-joda/core";
+// import "@js-joda/timezone";
 
 import {
   addDay,
@@ -85,16 +85,16 @@ const Home: NextPage = () => {
     dateFnsDiff = "error";
   }
 
-  let jsJodaDiff;
-  try {
-    const jodaNow = LocalDate.now(ZoneId.of("Asia/Tokyo"));
-    const jodaISO = LocalDate.parse("2022-04-01");
-    const period = Period.between(jodaISO, jodaNow);
-    jsJodaDiff = period.years();
-  } catch (e) {
-    console.log("js-joda : ", e);
-    jsJodaDiff = "error";
-  }
+  // let jsJodaDiff;
+  // try {
+  //   const jodaNow = LocalDate.now(ZoneId.of("Asia/Tokyo"));
+  //   const jodaISO = LocalDate.parse("2022-04-01");
+  //   const period = Period.between(jodaISO, jodaNow);
+  //   jsJodaDiff = period.years();
+  // } catch (e) {
+  //   console.log("js-joda : ", e);
+  //   jsJodaDiff = "error";
+  // }
 
   /**
    * Add
@@ -223,16 +223,16 @@ const Home: NextPage = () => {
   }
 
   // js-jodaにはvalidに相当する機能がないため、parseでエラーが出なければ有効とする
-  let jsJodaValid;
-  try {
-    const localData = LocalDateTime.parse("2022-02-29T00:00:00").atZone(
-      ZoneId.of("Asia/Tokyo")
-    );
-    jsJodaValid = localData ? "true" : "false";
-  } catch (e) {
-    console.log("js-joda : ", e);
-    jsJodaValid = "false";
-  }
+  // let jsJodaValid;
+  // try {
+  //   const localData = LocalDateTime.parse("2022-02-29T00:00:00").atZone(
+  //     ZoneId.of("Asia/Tokyo")
+  //   );
+  //   jsJodaValid = localData ? "true" : "false";
+  // } catch (e) {
+  //   console.log("js-joda : ", e);
+  //   jsJodaValid = "false";
+  // }
 
   // tempoにはvalidに相当する機能がないため、parseでエラーが出なければ有効とする
   let tempoValid;
