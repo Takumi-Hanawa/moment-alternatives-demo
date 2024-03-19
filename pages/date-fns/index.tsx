@@ -2,6 +2,7 @@ import { NextPage } from "next";
 
 import { format, utcToZonedTime } from "date-fns-tz";
 import { parseISO } from "date-fns";
+import "@js-joda/timezone";
 
 const DateFns: NextPage = () => {
   console.log(new Date());
