@@ -26,13 +26,13 @@ import {
 // } from "@js-joda/core";
 // import "@js-joda/timezone";
 
-// import {
-//   addDay,
-//   iso8601,
-//   format as tempoFormat,
-//   isBefore as tempoIsBefore,
-//   isAfter as tempoIsAfter,
-// } from "@formkit/tempo";
+import {
+  addDay,
+  iso8601,
+  format as tempoFormat,
+  isBefore as tempoIsBefore,
+  isAfter as tempoIsAfter,
+} from "@formkit/tempo";
 import { utcToZonedTime } from "date-fns-tz";
 
 const Home: NextPage = () => {
@@ -133,13 +133,13 @@ const Home: NextPage = () => {
   //   jsJodaAdd = "error";
   // }
 
-  // let tempoAdd;
-  // try {
-  //   tempoAdd = tempoFormat(addDay(jstDateTime, 1), "YYYY年M月D日 HH:mm:ss");
-  // } catch (e) {
-  //   console.log("tempo : ", e);
-  //   tempoAdd = "error";
-  // }
+  let tempoAdd;
+  try {
+    tempoAdd = tempoFormat(addDay(jstDateTime, 1), "YYYY年M月D日 HH:mm:ss");
+  } catch (e) {
+    console.log("tempo : ", e);
+    tempoAdd = "error";
+  }
 
   /**
    * Subtract
@@ -182,16 +182,16 @@ const Home: NextPage = () => {
   //   jsJodaSubtract = "error";
   // }
 
-  // let tempoSubtract;
-  // try {
-  //   tempoSubtract = tempoFormat(
-  //     addDay(jstDateTime, -1),
-  //     "YYYY年M月D日 HH:mm:ss"
-  //   );
-  // } catch (e) {
-  //   console.log("tempo : ", e);
-  //   tempoSubtract = "error";
-  // }
+  let tempoSubtract;
+  try {
+    tempoSubtract = tempoFormat(
+      addDay(jstDateTime, -1),
+      "YYYY年M月D日 HH:mm:ss"
+    );
+  } catch (e) {
+    console.log("tempo : ", e);
+    tempoSubtract = "error";
+  }
 
   /**
    * Valid
@@ -233,13 +233,13 @@ const Home: NextPage = () => {
   // }
 
   // tempoにはvalidに相当する機能がないため、parseでエラーが出なければ有効とする
-  // let tempoValid;
-  // try {
-  //   tempoValid = iso8601("2022-02-29");
-  // } catch (e) {
-  //   console.log("tempo : ", e);
-  //   tempoValid = "error";
-  // }
+  let tempoValid;
+  try {
+    tempoValid = iso8601("2022-02-29");
+  } catch (e) {
+    console.log("tempo : ", e);
+    tempoValid = "error";
+  }
 
   /**
    * Before & After
@@ -328,21 +328,21 @@ const Home: NextPage = () => {
   //   jsJodaAfter = "error";
   // }
 
-  // let tempoBefore;
-  // try {
-  //   tempoBefore = tempoIsBefore("2022-04-01T00:00:00", jstDateTime);
-  // } catch (e) {
-  //   console.log("tempo : ", e);
-  //   tempoBefore = "error";
-  // }
+  let tempoBefore;
+  try {
+    tempoBefore = tempoIsBefore("2022-04-01T00:00:00", jstDateTime);
+  } catch (e) {
+    console.log("tempo : ", e);
+    tempoBefore = "error";
+  }
 
-  // let tempoAfter;
-  // try {
-  //   tempoAfter = tempoIsAfter("2099-04-01T00:00:00", jstDateTime);
-  // } catch (e) {
-  //   console.log("tempo : ", e);
-  //   tempoAfter = "error";
-  // }
+  let tempoAfter;
+  try {
+    tempoAfter = tempoIsAfter("2099-04-01T00:00:00", jstDateTime);
+  } catch (e) {
+    console.log("tempo : ", e);
+    tempoAfter = "error";
+  }
 
   return (
     <div className={styles.container}>
