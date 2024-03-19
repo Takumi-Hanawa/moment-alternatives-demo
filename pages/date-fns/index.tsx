@@ -7,7 +7,7 @@ const DateFns: NextPage = () => {
   let formattedDateFromISOStr;
   try {
     formattedDateFromISOStr = format(
-      utcToZonedTime("2024-01-01T00:00:00", "Asia/Tokyo"),
+      new Date("2024-01-01T00:00:00"),
       "yyyy-MM-dd HH:mm:ss"
     );
   } catch (error) {
@@ -17,13 +17,8 @@ const DateFns: NextPage = () => {
   let formattedDateFromParsedISOStr;
   try {
     formattedDateFromParsedISOStr = format(
-      utcToZonedTime(parseISO("2024-01-01T00:00:00"), "Asia/Tokyo"),
+      parseISO("2024-01-01T00:00:00"),
       "yyyy-MM-dd HH:mm:ss"
-    );
-
-    console.log(
-      "dateFromParsedISOStr : ",
-      utcToZonedTime(parseISO("2024-01-01T00:00:00"), "Asia/Tokyo")
     );
   } catch (error) {
     console.error("formattedDateFromParsedISOStr : ", error);
@@ -32,13 +27,8 @@ const DateFns: NextPage = () => {
   let formattedDateFromYYYYMMDDStr;
   try {
     formattedDateFromYYYYMMDDStr = format(
-      utcToZonedTime("2024-01-01", "Asia/Tokyo"),
+      new Date("2024-01-01"),
       "yyyy-MM-dd HH:mm:ss"
-    );
-
-    console.log(
-      "dateFromYYYYMMDDStr : ",
-      utcToZonedTime("2024-01-01", "Asia/Tokyo")
     );
   } catch (error) {
     console.error("formattedDateFromYYYYMMDDStr : ", error);
@@ -47,11 +37,9 @@ const DateFns: NextPage = () => {
   let formattedDateFromParsedYYYYMMDDStr;
   try {
     formattedDateFromParsedYYYYMMDDStr = format(
-      utcToZonedTime(parseISO("2024-01-01"), "Asia/Tokyo"),
+      parseISO("2024-01-01"),
       "yyyy-MM-dd HH:mm:ss"
     );
-
-    console.log("dateFromParsedYYYYMMDDStr : ", parseISO("2024-01-01"));
   } catch (error) {
     console.error("formattedDateFromParsedYYYYMMDDStr : ", error);
   }
