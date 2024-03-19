@@ -47,7 +47,7 @@ const DateFns: NextPage = () => {
   let formattedDateFromParsedYYYYMMDDStr;
   try {
     formattedDateFromParsedYYYYMMDDStr = format(
-      parseISO("2024-01-01"),
+      utcToZonedTime(parseISO("2024-01-01"), "Asia/Tokyo"),
       "yyyy-MM-dd HH:mm:ss"
     );
 
