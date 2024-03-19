@@ -1,10 +1,10 @@
 import type { NextPage } from "next";
 import styles from "../styles/Home.module.css";
 
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import timezone from "dayjs/plugin/timezone";
-import { DateTime } from "luxon";
+// import dayjs from "dayjs";
+// import utc from "dayjs/plugin/utc";
+// import timezone from "dayjs/plugin/timezone";
+// import { DateTime } from "luxon";
 import {
   addDays,
   differenceInYears,
@@ -36,10 +36,8 @@ import {
 import { utcToZonedTime } from "date-fns-tz";
 
 const Home: NextPage = () => {
-  console.log(isValid(parse("20220427", "yyyy-MM-dd", new Date())));
-
-  dayjs.extend(utc);
-  dayjs.extend(timezone);
+  // dayjs.extend(utc);
+  // dayjs.extend(timezone);
 
   // const jodaNow = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
   // const jodaISO = ZonedDateTime.of(
@@ -53,26 +51,26 @@ const Home: NextPage = () => {
   /**
    * Diff
    */
-  let dayjsDiff;
-  try {
-    dayjsDiff = dayjs(jstDateTime).diff("2022-04-01T00:00:00", "year", true);
-  } catch (e) {
-    console.log("dayjs : ", e);
-    dayjsDiff = "error";
-  }
+  // let dayjsDiff;
+  // try {
+  //   dayjsDiff = dayjs(jstDateTime).diff("2022-04-01T00:00:00", "year", true);
+  // } catch (e) {
+  //   console.log("dayjs : ", e);
+  //   dayjsDiff = "error";
+  // }
 
-  let luxonDiff;
-  try {
-    luxonDiff = DateTime.now()
-      .setZone("Asia/Tokyo")
-      .diff(
-        DateTime.fromISO("2022-04-01T00:00:00").setZone("Asia/Tokyo"),
-        "year"
-      ).years;
-  } catch (e) {
-    console.log("luxon : ", e);
-    luxonDiff = "error";
-  }
+  // let luxonDiff;
+  // try {
+  //   luxonDiff = DateTime.now()
+  //     .setZone("Asia/Tokyo")
+  //     .diff(
+  //       DateTime.fromISO("2022-04-01T00:00:00").setZone("Asia/Tokyo"),
+  //       "year"
+  //     ).years;
+  // } catch (e) {
+  //   console.log("luxon : ", e);
+  //   luxonDiff = "error";
+  // }
 
   let dateFnsDiff;
   try {
@@ -99,24 +97,24 @@ const Home: NextPage = () => {
   /**
    * Add
    */
-  let dayjsAdd;
-  try {
-    dayjsAdd = dayjs(jstDateTime).add(1, "day").format("YYYY年M月D日 HH:mm:ss");
-  } catch (e) {
-    console.log("dayjs : ", e);
-    dayjsAdd = "error";
-  }
+  // let dayjsAdd;
+  // try {
+  //   dayjsAdd = dayjs(jstDateTime).add(1, "day").format("YYYY年M月D日 HH:mm:ss");
+  // } catch (e) {
+  //   console.log("dayjs : ", e);
+  //   dayjsAdd = "error";
+  // }
 
-  let luxonAdd;
-  try {
-    luxonAdd = DateTime.now()
-      .setZone("Asia/Tokyo")
-      .plus({ days: 1 })
-      .toFormat("yyyy年M月d日 HH:mm:ss");
-  } catch (e) {
-    console.log("luxon : ", e);
-    luxonAdd = "error";
-  }
+  // let luxonAdd;
+  // try {
+  //   luxonAdd = DateTime.now()
+  //     .setZone("Asia/Tokyo")
+  //     .plus({ days: 1 })
+  //     .toFormat("yyyy年M月d日 HH:mm:ss");
+  // } catch (e) {
+  //   console.log("luxon : ", e);
+  //   luxonAdd = "error";
+  // }
 
   let dateFnsAdd;
   try {
@@ -146,26 +144,26 @@ const Home: NextPage = () => {
   /**
    * Subtract
    */
-  let dayjsSubtract;
-  try {
-    dayjsSubtract = dayjs(jstDateTime)
-      .subtract(1, "day")
-      .format("YYYY年M月D日 HH:mm:ss");
-  } catch (e) {
-    console.log("dayjs : ", e);
-    dayjsSubtract = "error";
-  }
+  // let dayjsSubtract;
+  // try {
+  //   dayjsSubtract = dayjs(jstDateTime)
+  //     .subtract(1, "day")
+  //     .format("YYYY年M月D日 HH:mm:ss");
+  // } catch (e) {
+  //   console.log("dayjs : ", e);
+  //   dayjsSubtract = "error";
+  // }
 
-  let luxonSubtract;
-  try {
-    luxonSubtract = DateTime.now()
-      .setZone("Asia/Tokyo")
-      .minus({ days: 1 })
-      .toFormat("yyyy年M月d日 HH:mm:ss");
-  } catch (e) {
-    console.log("luxon : ", e);
-    luxonSubtract = "error";
-  }
+  // let luxonSubtract;
+  // try {
+  //   luxonSubtract = DateTime.now()
+  //     .setZone("Asia/Tokyo")
+  //     .minus({ days: 1 })
+  //     .toFormat("yyyy年M月d日 HH:mm:ss");
+  // } catch (e) {
+  //   console.log("luxon : ", e);
+  //   luxonSubtract = "error";
+  // }
 
   let dateFnsSubtract;
   try {
@@ -198,21 +196,21 @@ const Home: NextPage = () => {
   /**
    * Valid
    */
-  let dayjsValid;
-  try {
-    dayjsValid = dayjs("2022-02-29").isValid();
-  } catch (e) {
-    console.log("dayjs : ", e);
-    dayjsValid = "error";
-  }
+  // let dayjsValid;
+  // try {
+  //   dayjsValid = dayjs("2022-02-29").isValid();
+  // } catch (e) {
+  //   console.log("dayjs : ", e);
+  //   dayjsValid = "error";
+  // }
 
-  let luxonValid;
-  try {
-    luxonValid = DateTime.fromISO("2022-02-29").setZone("Asia/Tokyo").isValid;
-  } catch (e) {
-    console.log("luxon : ", e);
-    luxonValid = "error";
-  }
+  // let luxonValid;
+  // try {
+  //   luxonValid = DateTime.fromISO("2022-02-29").setZone("Asia/Tokyo").isValid;
+  // } catch (e) {
+  //   console.log("luxon : ", e);
+  //   luxonValid = "error";
+  // }
 
   let dateFnsValid;
   try {
@@ -246,45 +244,45 @@ const Home: NextPage = () => {
   /**
    * Before & After
    */
-  let dayjsBefore;
-  try {
-    dayjsBefore = dayjs("2022-04-01T00:00:00").isBefore(dayjs(jstDateTime));
-  } catch (e) {
-    console.log("dayjs : ", e);
-    dayjsBefore = "error";
-  }
+  // let dayjsBefore;
+  // try {
+  //   dayjsBefore = dayjs("2022-04-01T00:00:00").isBefore(dayjs(jstDateTime));
+  // } catch (e) {
+  //   console.log("dayjs : ", e);
+  //   dayjsBefore = "error";
+  // }
 
-  let dayjsAfter;
-  try {
-    dayjsAfter = dayjs("2099-04-01T00:00:00").isAfter(dayjs(jstDateTime));
-  } catch (e) {
-    console.log("dayjs : ", e);
-    dayjsAfter = "error";
-  }
+  // let dayjsAfter;
+  // try {
+  //   dayjsAfter = dayjs("2099-04-01T00:00:00").isAfter(dayjs(jstDateTime));
+  // } catch (e) {
+  //   console.log("dayjs : ", e);
+  //   dayjsAfter = "error";
+  // }
 
-  let luxonBefore;
-  try {
-    luxonBefore =
-      DateTime.fromISO("2022-04-01T00:00:00").setZone("Asia/Tokyo") <
-      DateTime.now().setZone("Asia/Tokyo")
-        ? true
-        : false;
-  } catch (e) {
-    console.log("luxon : ", e);
-    luxonBefore = "error";
-  }
+  // let luxonBefore;
+  // try {
+  //   luxonBefore =
+  //     DateTime.fromISO("2022-04-01T00:00:00").setZone("Asia/Tokyo") <
+  //     DateTime.now().setZone("Asia/Tokyo")
+  //       ? true
+  //       : false;
+  // } catch (e) {
+  //   console.log("luxon : ", e);
+  //   luxonBefore = "error";
+  // }
 
-  let luxonAfter;
-  try {
-    luxonAfter =
-      DateTime.fromISO("2099-04-01T00:00:00").setZone("Asia/Tokyo") >
-      DateTime.now().setZone("Asia/Tokyo")
-        ? true
-        : false;
-  } catch (e) {
-    console.log("luxon : ", e);
-    luxonAfter = "error";
-  }
+  // let luxonAfter;
+  // try {
+  //   luxonAfter =
+  //     DateTime.fromISO("2099-04-01T00:00:00").setZone("Asia/Tokyo") >
+  //     DateTime.now().setZone("Asia/Tokyo")
+  //       ? true
+  //       : false;
+  // } catch (e) {
+  //   console.log("luxon : ", e);
+  //   luxonAfter = "error";
+  // }
 
   let dateFnsBefore;
   try {
@@ -349,7 +347,7 @@ const Home: NextPage = () => {
   return (
     <div className={styles.container}>
       <h1>Moment Alternatives Demo</h1>
-      <div>
+      {/* <div>
         <h2>Day.js latest</h2>
         <table>
           <tbody>
@@ -482,7 +480,7 @@ const Home: NextPage = () => {
             </tr>
           </tbody>
         </table>
-      </div>
+      </div> */}
       <div>
         <h2>date-fns 2.30.0</h2>
         <table>
