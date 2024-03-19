@@ -33,14 +33,14 @@ import {
   isAfter as tempoIsAfter,
 } from "@formkit/tempo";
 
-import { zonedTimeToUtc } from "date-fns-tz";
+import { utcToZonedTime } from "date-fns-tz";
 
 const DateFns: NextPage = () => {
   try {
-    const utcDate = zonedTimeToUtc(new Date(), "Asia/Tokyo");
-    console.log("zonedTimeToUtc: ", utcDate);
+    const utcDate = utcToZonedTime(new Date("2024-01-01"), "Asia/Tokyo");
+    console.log("utcToZonedTime: ", utcDate);
   } catch (error) {
-    console.error("zonedTimeToUtc: ", error);
+    console.error("utcToZonedTime: ", error);
   }
 
   return (
