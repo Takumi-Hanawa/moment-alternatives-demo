@@ -1,13 +1,13 @@
 import { NextPage } from "next";
 
-import { utcToZonedTime } from "date-fns-tz";
+import { zonedTimeToUtc } from "date-fns-tz";
 
 const DateFns: NextPage = () => {
   try {
-    const jstDate = utcToZonedTime(new Date(), "Asia/Tokyo");
-    console.log("utcToZonedTime: ", jstDate);
+    const utcDate = zonedTimeToUtc(new Date(), "Asia/Tokyo");
+    console.log("zonedTimeToUtc: ", utcDate);
   } catch (error) {
-    console.error("utcToZonedTime: ", error);
+    console.error("zonedTimeToUtc: ", error);
   }
 
   return (
