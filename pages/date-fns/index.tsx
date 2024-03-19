@@ -1,16 +1,7 @@
 import { NextPage } from "next";
 import { utcToZonedTime } from "date-fns-tz";
-import {
-  addDays,
-  differenceInYears,
-  format,
-  isAfter,
-  isBefore,
-  isValid,
-  parse,
-  parseISO,
-  subDays,
-} from "date-fns";
+import { format } from "date-fns";
+import "@formatjs/intl-datetimeformat/polyfill";
 
 const DateFns: NextPage = () => {
   const jstDateTime = utcToZonedTime(new Date(), "Asia/Tokyo");
