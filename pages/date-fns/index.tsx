@@ -1,13 +1,8 @@
 import "@formatjs/intl-getcanonicallocales/polyfill";
 import "@formatjs/intl-locale/polyfill";
 
-import "@formatjs/intl-pluralrules/polyfill";
-import "@formatjs/intl-pluralrules/locale-data/ja"; // locale-data for en
-
-import "@formatjs/intl-numberformat/polyfill";
-import "@formatjs/intl-numberformat/locale-data/ja"; // locale-data for en
-
 import "@formatjs/intl-datetimeformat/polyfill";
+import "@formatjs/intl-datetimeformat/locale-data/ja";
 import "@formatjs/intl-datetimeformat/add-all-tz";
 
 import { NextPage } from "next";
