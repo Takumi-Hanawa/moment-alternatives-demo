@@ -1,11 +1,12 @@
 import { NextPage } from "next";
 
 import { format, utcToZonedTime } from "date-fns-tz";
+import { parseISO } from "date-fns";
 
 const DateFns: NextPage = () => {
   let dateObjFromStr;
   try {
-    dateObjFromStr = utcToZonedTime("2024-01-01", "Asia/Tokyo");
+    dateObjFromStr = utcToZonedTime(parseISO("2024-01-01"), "Asia/Tokyo");
   } catch (error) {
     console.log("dateObjFromStr : ", error);
   }
