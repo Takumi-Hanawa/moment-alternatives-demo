@@ -37,8 +37,11 @@ import { utcToZonedTime } from "date-fns-tz";
 
 const DateFns: NextPage = () => {
   try {
-    const utcDate = utcToZonedTime(new Date("2024-01-01"), "Asia/Tokyo");
-    console.log("utcToZonedTime: ", utcDate);
+    const jstTime = format(
+      utcToZonedTime(new Date(), "Asia/Tokyo"),
+      "yyyy年M月d日 HH:mm:ss"
+    );
+    console.log("utcToZonedTime: ", jstTime);
   } catch (error) {
     console.error("utcToZonedTime: ", error);
   }
