@@ -61,6 +61,7 @@ const DateFns: NextPage = () => {
       <h1>date-fns Demo</h1>
       <p>From ISO String : {formattedDateFromISOStr}</p>
       <p>From Parsed ISO String : {formattedDateFromParsedISOStr}</p>
+      <p>From YYYY-MM-DD String : {formattedDateFromYYYYMMDDStr}</p>
       <p>
         From Parsed YYYY-MM-DD String : {formattedDateFromParsedYYYYMMDDStr}
       </p>
