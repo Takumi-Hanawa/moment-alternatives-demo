@@ -94,6 +94,24 @@
   dependencies:
     tslib "^2.4.0"
 
+"@formatjs/intl-numberformat@^8.10.0":
+  version "8.10.0"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-numberformat/-/intl-numberformat-8.10.0.tgz#f078622e63ebe8d12efee8c12820fe54fe3041d6"
+  integrity sha512-i4Isl+E/ljea9wGwqFSlzOINhSM4GgbXnooI5XB0VGxc5dPEn9QkgadH4XM2wN2halvAxUyIXNq/08QpQDnODQ==
+  dependencies:
+    "@formatjs/ecma402-abstract" "1.18.2"
+    "@formatjs/intl-localematcher" "0.5.4"
+    tslib "^2.4.0"
+
+"@formatjs/intl-pluralrules@^5.2.12":
+  version "5.2.12"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-pluralrules/-/intl-pluralrules-5.2.12.tgz#0433202e985c7853b8737e7127253e18474eced1"
+  integrity sha512-V/namV1R/FPlsNMcO6U3saOoUqCp6DIPj4BONjj4yW78BU9gRytEJEdifOv+O1cU2Sb7AqOLOju6/qqIRRauLQ==
+  dependencies:
+    "@formatjs/ecma402-abstract" "1.18.2"
+    "@formatjs/intl-localematcher" "0.5.4"
+    tslib "^2.4.0"
+
 "@formkit/tempo@^0.0.15":
   version "0.0.15"
   resolved "https://registry.yarnpkg.com/@formkit/tempo/-/tempo-0.0.15.tgz#94e9c38551a64bbbe14a26d2a77931e56c81d7f0"
